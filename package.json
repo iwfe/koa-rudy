@@ -1,0 +1,24 @@
+{
+  "name": "koa-rudy",
+  "version": "0.0.1",
+  "description": "koa2 ",
+  "main": "server.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwfe/koa-rudy.git"
+  },
+  "keywords": [
+    "koa",
+    "node",
+    "rudy"
+  ],
+  "author": "enzo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iwfe/koa-rudy/issues"
+  },
+  "homepage": "https://github.com/iwfe/koa-rudy#readme"
+}
