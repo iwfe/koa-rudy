@@ -4,7 +4,8 @@
   "description": "koa2 ",
   "main": "server.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "dev": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/iwfe/koa-rudy/issues"
   },
-  "homepage": "https://github.com/iwfe/koa-rudy#readme"
+  "homepage": "https://github.com/iwfe/koa-rudy#readme",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  }
 }
