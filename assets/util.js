@@ -1,5 +1,5 @@
-'use strict';
-
+const path = require('path');
+const fs = require('fs');
 /**
  * 简易模板引擎，实现配置文件转换为真实数据
  * @param  {object} obj  配置文件
@@ -15,6 +15,42 @@ exports.replace = function replace (obj, data) {
 
   return JSON.parse(json);
 }
+
+/**
+ * 查找目录中的所有文件
+ * @param  {string} dir       查找路径
+ * @param  {init}   _pending  递归参数，忽略
+ * @param  {array}  _result   递归参数，忽略
+ * @return {array}            文件list
+ */
+exports.pathls = function pathls(dir, _pending, _result) {
+  _pending = _pending ? _pending++ : 1;
+  _result = _result || [];
+
+  if (!path.isAbsolute(dir)) {
+    dir = path.join(process.cwd(), dir);
+  }
+
+  console.log(dir);
+
+  // if error, throw it
+  let stat = fs.lstatSync(dir);
+
+  if (stat.isDirectory()) {
+    let files = fs.readdirSync(dir);
+    files.forEach(function(part) {
+      pathls(path.join(dir, part), _pending, _result);
+    });
+    if (--_pending === 0) {
+      return _result;
+    }
+  } else {
+    _result.push(dir);
+    if (--_pending === 0) {
+      return _result;
+    }
+  }
+};
 
 /**
  * 深度merge对象

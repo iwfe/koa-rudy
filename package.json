@@ -1,11 +1,12 @@
 {
   "name": "koa-rudy",
   "version": "0.0.1",
-  "description": "koa2 ",
+  "description": "koa",
   "main": "server.js",
   "scripts": {
     "test": "",
-    "dev": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
+    "dev": "./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
+    "debug": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,12 @@
   },
   "homepage": "https://github.com/iwfe/koa-rudy#readme",
   "dependencies": {
+    "axios": "^0.15.2",
+    "co-body": "^4.2.0",
+    "copy-to": "^2.0.1",
+    "debug": "^2.3.0",
+    "koa": "^2.0.0",
+    "koa-router": "^5.4.0",
     "nodemon": "^1.11.0"
   }
 }
