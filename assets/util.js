@@ -31,8 +31,6 @@ exports.pathls = function pathls(dir, _pending, _result) {
     dir = path.join(process.cwd(), dir);
   }
 
-  console.log(dir);
-
   // if error, throw it
   let stat = fs.lstatSync(dir);
 

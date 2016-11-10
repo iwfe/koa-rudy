@@ -2,24 +2,25 @@
 * @Author: enzo
 * @Date:   2016-11-10 10:20:28
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-10 10:21:39
+* @Last Modified time: 2016-11-10 18:28:12
 */
 
 
 module.exports = {
-    '/': function(ctx, next){
-        ctx.body = 'index';
+    '/': async function(ctx, next){ 
+        console.log(121212);
+        await ctx.render('index');
     },
 
-    'get:/:id': function (ctx){
-        ctx.body = 'id';
+    'get:/:id': function (ctx,next){
+        ctx.body = ctx.params.id;
     },
 
-    'del:/:id': function (){
+    'del:/:id': function (ctx,next){
         
     },
 
-    'post:/user/:id': function (){
+    'post:/:id': function (ctx,next){
         
     }
 }
