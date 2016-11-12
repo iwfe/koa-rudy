@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-08 15:02:53
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-10 11:04:15
+* @Last Modified time: 2016-11-11 11:52:10
 */
 
 const debug = require('debug')('rudy:router');
@@ -16,6 +16,7 @@ const root = path.join(__dirname, '../../app/demo/controller');
 
 const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
+const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
 module.exports = function(_root){
 
@@ -23,8 +24,8 @@ module.exports = function(_root){
 
     util.pathls(_root).forEach(function(filePath) {
 
-        if (!/([a-zA-Z0-9_\-]+)(\.js)$/.test(filePath)) {
-          return;
+        if (!jsfileReg.test(filePath)) {
+            return;
         }
 
         // router path
@@ -44,8 +45,6 @@ module.exports = function(_root){
             routername ? routername = rootPath+routername : rootPath;
 
             routername = appRoot+routername;
-
-            console.log(routername);
 
             router[method](routername, routerfn);
         })

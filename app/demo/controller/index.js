@@ -2,14 +2,15 @@
 * @Author: enzo
 * @Date:   2016-11-10 10:20:28
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-10 18:28:12
+* @Last Modified time: 2016-11-11 16:31:09
 */
 
 
 module.exports = {
     '/': async function(ctx, next){ 
-        console.log(121212);
-        await ctx.render('index');
+        await ctx.render('index', {
+            title: 'koa-rudy'
+        });
     },
 
     'get:/:id': function (ctx,next){
@@ -24,3 +25,8 @@ module.exports = {
         
     }
 }
+
+
+
+
+

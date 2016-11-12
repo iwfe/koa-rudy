@@ -2,13 +2,11 @@
  * @Author: enzo
  * @Date:   2016-11-08 15:02:44
  * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-10 18:46:48
+ * @Last Modified time: 2016-11-11 15:24:16
  */
 
 /**
  * rudy-view
- * 兼容node 7.0
- * 支持 async/await
  * TUDO 测试
  * @type {[type]}
  */
@@ -17,6 +15,10 @@ const path = require('path');
 const copy = require('copy-to');
 const fs = require('fs');
 const ejs = require('ejs');
+
+ejs.open = '{{';
+ejs.close = '}}';
+
 
 var defaultSettings = {
     cache: true,
