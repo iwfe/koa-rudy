@@ -6,7 +6,8 @@
   "scripts": {
     "test": "",
     "dev": "./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
-    "debug": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
+    "debug": "./node_modules/.bin/nodemon --debug-brk bin/server.js",
+    "devl": "next"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,24 @@
     "koa-ejs": "^3.0.0",
     "koa-router": "^5.4.0",
     "koa-send": "^3.2.0",
-    "nodemon": "^1.11.0"
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "koa-webpack-middleware": "^1.0.3",
+    "merge": "^1.2.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-middleware": "^1.2.0"
   }
 }

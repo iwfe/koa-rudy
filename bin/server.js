@@ -2,8 +2,10 @@
 * @Author: enzo
 * @Date:   2016-11-08 11:31:06
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-10 17:47:39
+* @Last Modified time: 2016-11-14 21:47:18
 */
+
+require('babel-register');
 
 const debug = require('debug')('rudy:server');
 
