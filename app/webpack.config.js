@@ -2,17 +2,13 @@
 * @Author: enzo
 * @Date:   2016-11-14 00:07:55
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 13:44:18
+* @Last Modified time: 2016-11-16 15:21:30
 */
 
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('merge');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-// var HappyPack = require('happypack');
-// var happyThreadPool = HappyPack.ThreadPool({ size: 2 });
-
 
 var webpackConfig = {
   output: {
