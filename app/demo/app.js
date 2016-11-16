@@ -2,14 +2,14 @@
 * @Author: enzo
 * @Date:   2016-11-15 11:40:16
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 10:58:30
+* @Last Modified time: 2016-11-16 13:37:49
 */
 
 'use strict';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { RoutingContext, match } from 'react-router';
+import { RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './routes';
 import configureStore from './store';
@@ -34,7 +34,7 @@ const renderFullPage = function (html, initialState) {
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
       </script>
-      <script src="/static/bundle.js"></script>
+      <script src="/dist/bundle.js"></script>
     </body>
     </html>
   `;
@@ -44,7 +44,7 @@ export default function (){
 
     return async function(ctx, next){
         if (ctx.url.indexOf('ico') > -1) {
-          return next();
+          return await next();
         }
 
         await match({ routes, location: ctx.url }, (err, redirectLocation, renderProps) => {
@@ -70,11 +70,9 @@ export default function (){
 
                     const html = renderToString(
                       <Provider store={store}>
-                          <RoutingContext {...renderProps} />
+                          <RouterContext {...renderProps} />
                       </Provider>
                     );
-
-                    // <RoutingContext {...renderProps} />
                     
                     ctx.status = 200;
                     ctx.body = renderFullPage(html, store.getState());
@@ -86,6 +84,6 @@ export default function (){
            
         });
 
-        return next()
+        return await next()
     }
 }

@@ -2,17 +2,17 @@
 * @Author: enzo
 * @Date:   2016-11-13 23:36:03
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 11:02:16
+* @Last Modified time: 2016-11-16 13:29:49
 */
 
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
-class Demo extends Component {
+const Demo = React.createClass({
   render() {
     return (
-      <p>props.children</p>
+      <p>{this.props.children}</p>
     );
   }
-}
+})
 
 export default Demo;

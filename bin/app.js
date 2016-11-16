@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-08 11:40:08
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 11:08:32
+* @Last Modified time: 2016-11-16 12:04:52
 */
 
 const debug = require('debug')('rudy:app');
@@ -14,19 +14,17 @@ import webpack from 'webpack';
 import webpackConfig from '../app/webpack.config';
 import demoapp from '../app/demo/app.js';
 
-
 const app = new koa();
 
-// const compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
 
 
-// app.use(middleware.devMiddleware(compiler, { 
-//     publicPath: webpackConfig.output.publicPath
-// }));
+app.use(middleware.devMiddleware(compiler, { 
+    publicPath: webpackConfig.output.publicPath
+}));
 
-//app.use(demo());
-//app.use(demoapp());
-
+// app.use(demo());
+app.use(demoapp());
 
 app.use(middleware.assstatic('.'));
 
@@ -35,8 +33,6 @@ app.use(middleware.view({
 }));
 
 app.use(middleware.router());
-
 app.use(middleware.body());
-
 
 module.exports = app;

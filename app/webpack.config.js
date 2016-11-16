@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-14 00:07:55
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 11:07:06
+* @Last Modified time: 2016-11-16 13:44:18
 */
 
 var path = require('path');
@@ -17,7 +17,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpackConfig = {
   output: {
         path: path.join(__dirname,'dist'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: '/dist/'
   },
   plugins: [
@@ -31,20 +31,10 @@ var webpackConfig = {
 };
 
 webpackConfig = merge(webpackConfig,{
-    entry : [
-      path.join(__dirname,'./demo/client/index.js')
-    ],
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: true
+    entry : {
+      'index': path.join(__dirname,'./demo/client/index.js')
     },
-    quiet: false,
-    lazy: true,
-    serverSideRender: true,
-    devtool: 'source-map',
-    stats: {
-        colors: true
-    },
+    
     module: {
         loaders: [{
             test: /\.js[x]?$/,
