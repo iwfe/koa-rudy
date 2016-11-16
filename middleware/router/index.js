@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-08 15:02:53
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 11:58:04
+* @Last Modified time: 2016-11-16 16:02:50
 */
 
 const debug = require('debug')('rudy:router');
@@ -12,15 +12,15 @@ const path = require('path');
 const fs = require('fs');
 const util = require('../../assets/util');
 
-const root = path.join(__dirname, '../../app/demo/controller');
-
 const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
 const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
 module.exports = function(_root){
-
-    _root = root;
+    
+    if (!_root) {
+        throw new Error('router setting _root');
+    }
 
     util.pathls(_root).forEach(function(filePath) {
 
@@ -44,7 +44,13 @@ module.exports = function(_root){
             method ? '' : method = 'get';
             routername ? routername = rootPath+routername : rootPath;
 
+            if (item == '_root') {
+                appRoot = exportFuncs['_root']+'/';
+            }
+
             routername = appRoot+routername;
+
+            console.log(routername);
 
             router[method](routername, routerfn);
         })
