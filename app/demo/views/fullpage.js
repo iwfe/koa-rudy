@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-16 14:43:51
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 15:36:57
+* @Last Modified time: 2016-11-16 17:01:36
 */
 
 'use strict';
@@ -18,7 +18,7 @@ const defaultPage = function (html, initialState, pageConfig) {
     <body>
       <div id="root">
         <div>
-          ${html}1212123453453453451212
+          ${html}
         </div>
       </div>
       <script>

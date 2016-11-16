@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-08 15:02:53
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 16:02:50
+* @Last Modified time: 2016-11-16 17:03:52
 */
 
 const debug = require('debug')('rudy:router');
@@ -36,6 +36,10 @@ module.exports = function(_root){
         let appRoot = '/';
 
         Object.keys(exportFuncs).forEach(item => {
+            if (item == '_root') {
+                return;
+            }
+            
             let pathparss = item.match(methodReg);
             let method = pathparss[1];
             let routername = pathparss[2];
@@ -44,7 +48,7 @@ module.exports = function(_root){
             method ? '' : method = 'get';
             routername ? routername = rootPath+routername : rootPath;
 
-            if (item == '_root') {
+            if (exportFuncs['_root']) {
                 appRoot = exportFuncs['_root']+'/';
             }
 

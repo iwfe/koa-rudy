@@ -2,7 +2,7 @@
  * @Author: enzo
  * @Date:   2016-11-11 14:54:11
  * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-16 11:16:53
+ * @Last Modified time: 2016-11-16 17:02:02
  */
 
 /**
@@ -34,17 +34,11 @@ module.exports = function(root, opts) {
 
     if (!opts.defer) {
         return async function serve(ctx, next) {
-             console.log(ctx.method == 'GET');
             if (ctx.method == 'HEAD' || ctx.method == 'GET') {
-                console.log(1212121266);
-                console.log(await send(ctx, ctx.path, opts));
                 if (await send(ctx, ctx.path, opts)) {
-                     
                     return await next();
                 }
             }
-
-            console.log(555);
 
             return await next();
         };
