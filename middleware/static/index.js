@@ -2,7 +2,7 @@
  * @Author: enzo
  * @Date:   2016-11-11 14:54:11
  * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-12 23:41:17
+ * @Last Modified time: 2016-11-16 11:16:53
  */
 
 /**
@@ -31,15 +31,22 @@ module.exports = function(root, opts) {
         opts.index =  opts.index || 'index.html';
     }
 
+
     if (!opts.defer) {
         return async function serve(ctx, next) {
+             console.log(ctx.method == 'GET');
             if (ctx.method == 'HEAD' || ctx.method == 'GET') {
+                console.log(1212121266);
+                console.log(await send(ctx, ctx.path, opts));
                 if (await send(ctx, ctx.path, opts)) {
-                    return next();
+                     
+                    return await next();
                 }
             }
 
-            return next();
+            console.log(555);
+
+            return await next();
         };
     }
 
@@ -53,7 +60,10 @@ module.exports = function(root, opts) {
             return next();
         }
 
-        send(ctx, ctx.path, opts);
+       // send(ctx, ctx.path, opts);
+        if (await send(ctx, ctx.path, opts)) {
+            return next();
+        }
         //next();
     };
 };
