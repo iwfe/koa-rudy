@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-16 14:43:51
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 17:01:36
+* @Last Modified time: 2016-11-16 19:25:50
 */
 
 'use strict';
@@ -24,7 +24,8 @@ const defaultPage = function (html, initialState, pageConfig) {
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
       </script>
-      
+      <script src="/dist/common.js">
+      <script src="/dist/${pageConfig.staticTag}.js">
     </body>
     </html>
   `;

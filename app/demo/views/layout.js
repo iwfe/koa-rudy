@@ -2,7 +2,7 @@
 * @Author: enzo
 * @Date:   2016-11-15 11:40:16
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-16 15:05:15
+* @Last Modified time: 2016-11-16 20:01:39
 */
 
 'use strict';
@@ -36,25 +36,24 @@ export default function (){
                 return;
             }
 
-            const store = configureStore();
+            const store = configureStore({});
 
-            util.fetchComponent(store.dispatch, renderProps.components, renderProps.params)
-                  .then(() => {
+            console.log(renderProps.components.propTypes);
+            console.log(456);
 
-                    const html = renderToString(
-                      <Provider store={store}>
-                          <RouterContext {...renderProps} />
-                      </Provider>
-                    );
+            //renderProps.components.propTypes.WrappedComponent();
+
+            const html = renderToString(
+              <Provider store={store}>
+                  <RouterContext {...renderProps} />
+              </Provider>
+            );
                     
-                    ctx.status = 200;
-                    ctx.body = fullPage(html, store.getState(), ctx.url);
-                  })
-                  .catch(err => {
-                    console.log(err)
-                    ctx.body = fullPage("",{},ctx.url);
-                  });
-           
+            ctx.status = 200;
+            ctx.body = fullPage(html, store.getState(), ctx.url);
+
+            // util.fetchComponent(store.dispatch, renderProps.components, renderProps.params)
+            //       .then(() => {
         });
 
         return await next()

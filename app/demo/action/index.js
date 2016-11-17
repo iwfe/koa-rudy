@@ -2,19 +2,19 @@
 * @Author: enzo
 * @Date:   2016-11-15 11:13:24
 * @Last Modified by:   enzo
-* @Last Modified time: 2016-11-15 11:16:42
+* @Last Modified time: 2016-11-16 19:24:08
 */
 
 'use strict';
 
-import fetch from 'axios';
+import axios from 'axios';
 
 export function fetchList() {
   return (dispatch) => {
-    return fetch('/api/list')
-        .then(res => res.json())
-        .then(json => dispatch({ type: 'FETCH_LIST_SUCCESS', payload: json }));
-  }
+    return axios.get('http://localhost:3000/api/home').then((res)=>{
+          dispatch({ type: 'FETCH_LIST_SUCCESS', list: res.data })
+        })
+    }
 }
 
 export function fetchItem(id) {
