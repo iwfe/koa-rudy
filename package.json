@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "",
-    "dev": "./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
+    "dev": "NODE_ENV=dev ./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
     "debug": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
   },
   "repository": {
@@ -31,8 +31,10 @@
     "ejs": "^2.5.2",
     "koa": "^2.0.0",
     "koa-ejs": "^3.0.0",
+    "koa-roles": "^1.0.2",
     "koa-router": "^5.4.0",
     "koa-send": "^3.2.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "winston": "^2.3.0"
   }
 }
