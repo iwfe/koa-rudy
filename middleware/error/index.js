@@ -19,9 +19,7 @@ module.exports = function (){
         return next().then().catch(err => {
             switch (err.status) {
                 case 400:
-                    
                     break;
-
                 case 500:
                     winston.error(err);
                     break;

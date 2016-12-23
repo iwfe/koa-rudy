@@ -43,7 +43,6 @@ module.exports = function(root, opts) {
             return next();
         };
     }
-
     return async function serve(ctx, next) {
 
         // console.log(ctx.method);
