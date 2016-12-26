@@ -8,6 +8,9 @@
 import qrcode from "qr-image";
 import images from "images";
 
+const SUCCESS_TEXT = '处理成功';
+const ERRER_TEXT = '处理失败';
+
 /**
  * 渲染页面
  * 返回指定静态html
@@ -18,7 +21,7 @@ import images from "images";
  */
 
 export function successTOpage(ctx, page, param) {
-    ctx.body = ctx.render('index', param)
+    ctx.body = ctx.render(page, param)
 }
 
 
@@ -29,15 +32,15 @@ export function successTOpage(ctx, page, param) {
  * @return {[type]}       [description]
  */
 
-export function successTojson(ctx, param) {
+export function successTojson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
     let data = {
         data: param,
-        msg: '200'
+        status: status,
+        msg: msg
     }
 
     ctx.body = JSON.stringify(data);
 }
-
 
 /**
  * 返回失败json数据
@@ -46,10 +49,11 @@ export function successTojson(ctx, param) {
  * @return {[type]} param   [description]
  */
 
-export function errorTOjson(ctx, status, param) {
+export function errorTOjson(ctx, param, status = 500, msg = ERRER_TEXT) {
     let data = {
         data: param,
-        msg: status
+        status: status,
+        msg: msg
     }
 
     ctx.body = JSON.stringify(data);

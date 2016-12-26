@@ -16,7 +16,7 @@ import querystring from 'querystring';
  */
 
 const instance = axios.create({
-    timeout: 5000
+    timeout: global._rudyConfig.timeout
 });
 
 export default class Base {
