@@ -21,7 +21,7 @@ module.exports = {
     },
     '/another/:test': async function(ctx, next) {
         successToPage(ctx, 'another', {
-            title: 'fuck you',
+            title: '另一个接口',
             data:ctx.params.test
         });
     }
