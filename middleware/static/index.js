@@ -33,7 +33,7 @@ module.exports = function(root, opts) {
 
     if (!opts.defer) {
         return async function serve(ctx, next) {
-            console.log(ctx.method);
+            // console.log(ctx.method);
             if (ctx.method == 'HEAD' || ctx.method == 'GET') {
                 if (await send(ctx, ctx.path, opts)) {
                     return next();
@@ -46,7 +46,7 @@ module.exports = function(root, opts) {
 
     return async function serve(ctx, next) {
 
-        console.log(ctx.method);
+        // console.log(ctx.method);
         if (ctx.method != 'HEAD' && ctx.method != 'GET') {
             return next();
         }

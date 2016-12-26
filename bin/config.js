@@ -1,28 +1,36 @@
 /*
-* @Author: enzo
-* @Date:   2016-11-08 11:39:58
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-11-09 11:33:21
-*/
+ * @Author: enzo
+ * @Date:   2016-11-08 11:39:58
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-11-29 15:29:34
+ */
+
 const fs = require('fs');
+const path = require('path');
+
 const baseConfig = {
 
     // 应用端口
     port: 3000,
 
-    app: {
-        demo: 3000,
-        demo2: 8000
-    },
+    // 测试端口
+    testPort: 3001,
 
-    // 日志文件地址
-    logpath: '../../log/'
+    // 接口超时时间
+    timeout: 5000,
+
+    // 错误日志文件
+    errorLog: 'error-logs.log',
+
+    // info日志文件
+    infoLog: 'info-logs.log'
 }
 
-module.exports = function config(args) {
+module.exports = function config(env) {
 
-    let env = args.env || 'dev';
-    let configFile = '../config/'+env + '.js';
+    env = env || 'dev';
 
-  return Object.assign(baseConfig, fs.existsSync(configFile));
+    let configFile = require('../config/' + env + '.json');
+
+    return Object.assign(baseConfig, configFile);
 }

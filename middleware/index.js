@@ -40,3 +40,11 @@ exports.view = require('./view');
  */
 
 exports.assstatic = require('./static');
+
+
+
+/**
+ * 错误处理
+ */
+
+exports.error = require('./error');

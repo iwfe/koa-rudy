@@ -27,14 +27,30 @@
     "axios": "^0.15.2",
     "co-body": "^4.2.0",
     "copy-to": "^2.0.1",
+    "date-utils": "^1.2.21",
     "debug": "^2.3.0",
     "ejs": "^2.5.2",
     "koa": "^2.0.0",
+    "koa-bodyparser": "^2.3.0",
     "koa-ejs": "^3.0.0",
     "koa-roles": "^1.0.2",
-    "koa-router": "^5.4.0",
+    "koa-router": "^7.0.0",
     "koa-send": "^3.2.0",
-    "nodemon": "^1.11.0",
+    "properties": "^1.2.1",
+    "underscore": "^1.8.3",
     "winston": "^2.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jsdoc": "^3.4.3",
+    "koa-webpack-middleware": "^1.0.3",
+    "merge": "^1.2.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0",
+    "smartdoc": "^0.1.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-middleware": "^1.2.0",
+    "yui-jsdoc": "^0.0.3"
   }
 }

@@ -1,0 +1,7 @@
+{
+    "userClientUrl": "http://127.0.0.1/mock/user.json",
+    "houseUrl": "http://127.0.0.1/mock/user.json",
+    "searchClientUrl": "http://127.0.0.1/mock/user.json",
+    "houseUrl": "http://127.0.0.1/mock/user.json",
+    "msgUrl": "http://127.0.0.1/mock/user.json"
+}
