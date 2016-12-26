@@ -1,5 +1,6 @@
 /**
  * Created by huangxiaogang on 16/12/26.
+ * 首页提供的服务
  */
 
 import BaseHttp from './_base.js';
