@@ -1,56 +1,60 @@
 {
-  "name": "koa-rudy",
-  "version": "0.0.1",
-  "description": "koa",
-  "main": "server.js",
-  "scripts": {
-    "test": "",
-    "dev": "NODE_ENV=dev ./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
-    "debug": "./node_modules/.bin/nodemon --debug-brk bin/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iwfe/koa-rudy.git"
-  },
-  "keywords": [
-    "koa",
-    "node",
-    "rudy"
-  ],
-  "author": "enzo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iwfe/koa-rudy/issues"
-  },
-  "homepage": "https://github.com/iwfe/koa-rudy#readme",
-  "dependencies": {
-    "axios": "^0.15.2",
-    "co-body": "^4.2.0",
-    "copy-to": "^2.0.1",
-    "date-utils": "^1.2.21",
-    "debug": "^2.3.0",
-    "ejs": "^2.5.2",
-    "koa": "^2.0.0",
-    "koa-bodyparser": "^2.3.0",
-    "koa-ejs": "^3.0.0",
-    "koa-roles": "^1.0.2",
-    "koa-router": "^7.0.0",
-    "koa-send": "^3.2.0",
-    "properties": "^1.2.1",
-    "underscore": "^1.8.3",
-    "winston": "^2.3.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "jsdoc": "^3.4.3",
-    "koa-webpack-middleware": "^1.0.3",
-    "merge": "^1.2.0",
-    "mocha": "^3.1.2",
-    "nodemon": "^1.11.0",
-    "smartdoc": "^0.1.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.2.0",
-    "yui-jsdoc": "^0.0.3"
-  }
+    "name": "koa-rudy",
+    "version": "0.0.1",
+    "description": "koa",
+    "main": "server.js",
+    "scripts": {
+        "test": "NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./bin/server.js",
+        "dev": "NODE_ENV=develop ./node_modules/.bin/nodemon --use_strict --harmony ./bin/server.js",
+        "prod": "NODE_ENV=production ./node_modules/.bin/nodemon --use_strict ./bin/server.js",
+        "mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha ./test/test.js",
+        "doc": "node_modules/.bin/yuiJsDoc --config config/docConfig.js",
+        "pwapi": "./node_modules/.bin/anywhere -d ./document",
+        "autoDoc": "./node_modules/.bin/nodemon --use_strict ./bin/doc.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iwfe/koa-rudy.git"
+    },
+    "keywords": [
+        "koa",
+        "node",
+        "rudy"
+    ],
+    "author": "enzo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/iwfe/koa-rudy/issues"
+    },
+    "homepage": "https://github.com/iwfe/koa-rudy#readme",
+    "dependencies": {
+        "axios": "^0.15.2",
+        "co-body": "^4.2.0",
+        "copy-to": "^2.0.1",
+        "date-utils": "^1.2.21",
+        "debug": "^2.3.0",
+        "ejs": "^2.5.2",
+        "koa": "^2.0.0",
+        "koa-bodyparser": "^2.3.0",
+        "koa-ejs": "^3.0.0",
+        "koa-roles": "^1.0.2",
+        "koa-router": "^7.0.0",
+        "koa-send": "^3.2.0",
+        "properties": "^1.2.1",
+        "underscore": "^1.8.3",
+        "winston": "^2.3.0"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "extract-text-webpack-plugin": "^1.0.1",
+        "jsdoc": "^3.4.3",
+        "koa-webpack-middleware": "^1.0.3",
+        "merge": "^1.2.0",
+        "mocha": "^3.1.2",
+        "nodemon": "^1.11.0",
+        "smartdoc": "^0.1.1",
+        "webpack": "^1.13.3",
+        "webpack-dev-middleware": "^1.2.0",
+        "yui-jsdoc": "^0.0.3"
+    }
 }

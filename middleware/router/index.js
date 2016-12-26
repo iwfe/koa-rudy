@@ -10,7 +10,7 @@ const debug = require('debug')('rudy:router');
 const router = require('koa-router')();
 const path = require('path');
 const fs = require('fs');
-const util = require('../../util/commom.js');
+const util = require('../../commom.js');
 
 const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;

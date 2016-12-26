@@ -44,7 +44,7 @@ app.use(middleware.view({
  * 处理路由
  * 需要指定文件地址
  */
-app.use(middleware.router(path.join(__dirname, '../app/controller')));
+app.use(middleware.router(path.join(__dirname, '../app/resources')));
 
 
 /**

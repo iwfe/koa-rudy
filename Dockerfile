@@ -1,4 +1,4 @@
-FROM node:6.9.1
+FROM node:7.0.0
 
 RUN useradd --user-group --create-home --shell /bin/false app &&\
   npm config set registry https://registry.npm.taobao.org &&\
