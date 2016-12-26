@@ -12,13 +12,13 @@ import images from "images";
  * 渲染页面
  * 返回指定静态html
  * @param  {[type]} ctx   [description]
- * @param  {[type]} page  [description]
+ * @param  {[type]} pageName  页面名字
  * @param  {[type]} param [description]
  * @return {[type]}       [description]
  */
 
-export function successToPage(ctx, page, param) {
-    ctx.body = ctx.render('index', param)
+export function successToPage(ctx, pageName, param) {
+    ctx.body = ctx.render(pageName, param)
 }
 
 
