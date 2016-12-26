@@ -43,15 +43,15 @@ module.exports = function view(settings) {
         let viewPath = path.join(root,subViewName+viewExt);
         // layout外层
         let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
-        //缓存layout，减少io操作
+        // 缓存layout，减少io操作
         fileCache.tpl = tpl;
-        //渲染的模板内容
+        // 渲染的模板内容
         options.templateName = viewPath;
         let renderFn = ejs.compile(tpl, {
-            filename:viewPath,
-            _with: settings._with,
+            localsName:"locals", // 变量的命名空间
+            _with: true, //使用with结构渲染
             compileDebug: settings.debug,
-            delimiter: settings.delimiter
+            delimiter: settings.delimiter || '%' //使用默认的%符号
         });
         return renderFn(options);
     }
