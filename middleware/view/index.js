@@ -41,16 +41,18 @@ module.exports = function view(settings) {
                 viewExt
             } = settings;
         let viewPath = path.join(root,subViewName+viewExt);
+        // layout外层
         let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
+        //缓存layout，减少io操作
         fileCache.tpl = tpl;
+        //渲染的模板内容
+        options.templateName = viewPath;
         let renderFn = ejs.compile(tpl, {
             filename:viewPath,
             _with: settings._with,
             compileDebug: settings.debug,
             delimiter: settings.delimiter
         });
-        console.log(settings);
-        options.templateName = viewPath;
         return renderFn(options);
     }
 
@@ -69,5 +71,4 @@ module.exports = function view(settings) {
         });
         await next();
     }
-
-}
+};
