@@ -35,6 +35,8 @@
 1. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
 2. [Promise网络请求axios](https://github.com/mzabriskie/axios)
 3. [ejs模板渲染](https://github.com/mde/ejs)
+4. [工具相关lodash](https://github.com/lodash/lodash)
+    > [文档](https://lodash.com/docs/4.17.2)
 ## 业务分层
 
 > API 收集处理客户端请求数据，将处理好的数据发给service
