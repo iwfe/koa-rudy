@@ -6,17 +6,18 @@
 */
 
 import { successToPage } from './_base.js';
-
+import { getIndexInfo } from '../service/index';
 module.exports = {
     'get:/': async function(ctx, next){
-        successToPage(ctx, 'index', {
+        successToPage(ctx, 'welcome', {
             title: '首页'
         });
     },
-    'get:/hello/:id': async function(ctx, next){
-        successToPage(ctx, 'index', {
-            title: 'koa-rudy'
-        });
+    'get:/github': async function(ctx, next){
+        let gitData =await getIndexInfo();
+        successToPage(ctx, 'index', Object.assign({
+            title: 'github展示'
+        },gitData));
     },
     '/another/:test': async function(ctx, next) {
         successToPage(ctx, 'another', {
