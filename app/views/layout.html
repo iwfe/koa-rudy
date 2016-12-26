@@ -4,8 +4,8 @@
 <head>
   <title><%- locals.title %></title>
   <link rel="icon" href="/demo/static/image/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href='$static.getURL("common.css", $!forcePath)'>
-  <link rel="stylesheet" href='$static.getURL("${staticTag}.css", $!forcePath)'>
+  <link rel="stylesheet" href='<%- MethodNameSpace.getURL("common.css")%>'>
+  <link rel="stylesheet" href='<%- MethodNameSpace.getURL(staticTag + ".css") %>'>
   <style type="text/css">
         body {
             text-align: center;
