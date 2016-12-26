@@ -13,7 +13,7 @@ const logPath = global._appConfig.errorLog;
 winston.add(winston.transports.File, { 
     filename: path.join(__dirname, `../../logs/${logPath}`)
 });
-
+//@TODO 
 module.exports = function (){
     return function (ctx, next) {
         return next().catch(err => {
@@ -23,7 +23,6 @@ module.exports = function (){
                 case 500:
                     winston.error(err);
                     break;
-            
                 default:
                     ctx.status = 500;
                     console.log(err)

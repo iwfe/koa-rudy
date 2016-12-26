@@ -16,7 +16,7 @@ const app = new koa();
 
 /**
  * 处理错误
- * 
+ *
  * 全局处理，各层的错误全部抛出由该中间件捕获
  * 带状态码 util.throw('Error Message', 500);
  * 普通错误 throw new Error('Error Message');
@@ -45,14 +45,12 @@ app.use(middleware.view({
  * 404 or 500错误页面
  */
 app.use(async(ctx, next) => {
-  try {
     await next();
     const status = ctx.status || 404;
     if (status === 404) {
-      ctx.throw(404);
+        ctx.render('404',{staticTag:404});
+        throw new Error('404')
     }
-  } catch (err) {
-    await ctx.render('404',{staticTag:404})  }
 });
 
 
