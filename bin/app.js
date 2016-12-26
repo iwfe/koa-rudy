@@ -42,19 +42,6 @@ app.use(middleware.view({
 }));
 
 /**
- * 404 or 500错误页面
- */
-app.use(async(ctx, next) => {
-    await next();
-    const status = ctx.status || 404;
-    if (status === 404) {
-        ctx.render('404',{staticTag:404});
-        throw new Error('404')
-    }
-});
-
-
-/**
  * 处理路由
  * 需要指定文件地址
  */

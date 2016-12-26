@@ -13,10 +13,19 @@ const logPath = global._appConfig.errorLog;
 winston.add(winston.transports.File, { 
     filename: path.join(__dirname, `../../logs/${logPath}`)
 });
-//@TODO 
+
+/**
+ * 404 or 500错误页面
+ */
 module.exports = function (){
     return function (ctx, next) {
-        return next().catch(err => {
+        return next().then(()=>{
+            const status = ctx.status || 404;
+            if (status === 404) {
+                ctx.redirect('/')
+                winston.error('404 page redirect to index page');
+            }
+        }).catch(err => {
             switch (err.status) {
                 case 400:
                     break;
@@ -28,7 +37,7 @@ module.exports = function (){
                     console.log(err)
                     break;
             }
-            
+            // ctx.render('404',{staticTag:404});
             ctx.body = err;
         })
     }
