@@ -4,12 +4,12 @@
  * @Last Modified by:   slashhuang
  * @Last Modified time: 2016-12-26 15:24:16
  */
+import Utils from './util';
 
 const path = require('path');
 const copy = require('copy-to');
 const fs = require('fs');
 const ejs = require('ejs');
-
 
 var defaultSettings = {
     cache: true,
@@ -21,13 +21,10 @@ var defaultSettings = {
     writeResp: true
 };
 
-
 module.exports = function view(settings) {
-
     if (!settings || !settings.root) {
         throw new Error('settings.root required');
     }
-
     settings.root = path.resolve(process.cwd(), settings.root);
 
     copy(defaultSettings).to(settings);
@@ -42,11 +39,16 @@ module.exports = function view(settings) {
             } = settings;
         let viewPath = path.join(root,subViewName+viewExt);
         // layout外层
+        console.log(fileCache);
         let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
-        // 缓存layout，减少io操作
-        fileCache.tpl = tpl;
+        // 生产环境缓存layout，减少io操作
+        if(process.env['NODE_ENV']=='prod'){
+            fileCache.tpl = tpl;
+        }
         // 渲染的模板内容
-        options.templateName = viewPath;
+        Utils.addTemplate(options,{templateName:viewPath});
+        Utils.addConst(options);
+        Utils.addMethods(options);
         let renderFn = ejs.compile(tpl, {
             localsName:"locals", // 变量的命名空间
             _with: true, //使用with结构渲染

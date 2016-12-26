@@ -10,18 +10,21 @@ import { getIndexInfo } from '../service/index';
 module.exports = {
     'get:/': async function(ctx, next){
         successToPage(ctx, 'welcome', {
-            title: '首页'
+            title: '首页',
+            staticTag:'welcome'
         });
     },
     'get:/github': async function(ctx, next){
         let gitData =await getIndexInfo();
         successToPage(ctx, 'index', Object.assign({
-            title: 'github展示'
+            title: 'github展示',
+            staticTag:'index'
         },gitData));
     },
     '/another/:test': async function(ctx, next) {
         successToPage(ctx, 'another', {
             title: '另一个接口',
+            staticTag:'another',
             data:ctx.params.test
         });
     }

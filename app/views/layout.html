@@ -4,6 +4,8 @@
 <head>
   <title><%- locals.title %></title>
   <link rel="icon" href="/demo/static/image/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href='$static.getURL("common.css", $!forcePath)'>
+  <link rel="stylesheet" href='$static.getURL("${staticTag}.css", $!forcePath)'>
   <style type="text/css">
         body {
             text-align: center;
@@ -49,9 +51,12 @@
         }
 
   </style>
+
 </head>
 
 <body>
     <%- include(templateName) %>
+    <script src='<%- MethodNameSpace.getURL("common.js")%>'></script>
+    <script src='<%- MethodNameSpace.getURL(staticTag+".js")%>'></script>
 </body>
 </html>

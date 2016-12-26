@@ -20,7 +20,7 @@ const baseConfig = {
 
     // info日志文件
     infoLog: 'info-logs.log'
-}
+};
 
 module.exports = function config(env) {
 
@@ -29,4 +29,4 @@ module.exports = function config(env) {
     let configFile = require('./'+env + '.js');
 
     return Object.assign(baseConfig, configFile);
-}
+};

@@ -6,6 +6,13 @@
 */
 
 module.exports = {
+    /**
+     * 静态资源配置
+     */
+    staticConfigs:{
+        staticResourceConfigURL: 'http://',
+        staticResourceURL:'http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/iwjw-pc/staticResource.properties'
+    },
 
     cmsSoa: 'http://cmssoa.iwjwtest.com/IWCmsSOA/',
 
