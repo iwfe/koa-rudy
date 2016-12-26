@@ -7,8 +7,10 @@
 require("babel-register");
 
 const debug = require('debug')('rudy:server');
-
-let config = global._appConfig = require('./config/conf.js')(process.env.NODE_ENV);
+/**
+ * 切换不同的开发环境
+ */
+let config = global._appConfig = require('./config/conf.js')(process.env['NODE_ENV']);
 
 let app = require('./bin/app');
 

@@ -9,7 +9,7 @@ import { successToPage } from './_base.js';
 
 module.exports = {
     
-    '/': async function(ctx, next){
+    'get:/hello': async function(ctx, next){
         successToPage(ctx, 'index', {
             title: 'koa-rudy'
         });

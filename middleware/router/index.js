@@ -1,8 +1,8 @@
 /*
 * @Author: enzo
 * @Date:   2016-11-08 15:02:53
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-11-23 16:44:36
+* @Last Modified by:   slashhuang
+* @Last Modified time: 2016-12-26 12:00:36
 */
 
 const debug = require('debug')('rudy:router');
@@ -12,50 +12,46 @@ const path = require('path');
 const fs = require('fs');
 const util = require('../../utils/util');
 
-const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
-const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
+const jsFileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
 module.exports = function(_root){
     if (!_root) {
-        throw new Error('router setting _root');
+        throw new Error('router setting controller route for all route hashMap');
     }
+    /**
+     * 遍历文件夹存储路由hashMap
+     */
+    util.pathLS(_root).forEach(function(filePath) {
 
-    util.pathls(_root).forEach(function(filePath) {
-
-        if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1) {
+        if (!jsFileReg.test(filePath) || filePath.indexOf('_') > -1) {
             return;
         }
-
-        // router path
-        let rootPath = filePath.match(routerReg)[1];
-        // require module
-        let exportFuncs = require(filePath);
-
-        let appRoot = '/';
-
-        Object.keys(exportFuncs).forEach(item => {
+        let routerHandler = require(filePath);
+        /**
+         * 路径规则 由_root作为命名空间
+         */
+        Object.keys(routerHandler).forEach(item => {
             if (item == '_root') {
                 return;
             }
-            
-            let pathparss = item.match(methodReg);
-            let method = pathparss[1];
-            let routername = pathparss[2];
-            let routerfn = exportFuncs[item];
-            
-            method ? '' : method = 'get';
-            routername ? routername = rootPath+routername : rootPath;
-
-            if (exportFuncs['_root']) {
-                appRoot = exportFuncs['_root']+'/';
-            }
-            
-            routername = appRoot+routername;            
-            router[method](routername, routerfn);
+            /**
+             * 抽象具名路径
+             */
+            let pathParamArr = item.match(methodReg);
+            let method = pathParamArr[1] || 'get';
+            let routerFn = routerHandler[item];
+            /**
+             * 路径规则
+             * get:index:
+             * @type {string}
+             */
+            let routerName= [
+                routerHandler['_root']?( '/'+routerHandler['_root']+'/'):'',
+                pathParamArr[2]
+            ].join('');
+            router[method](routerName, routerFn);
         })
-
     });
-
     return router.routes()
 };

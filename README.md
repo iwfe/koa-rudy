@@ -5,15 +5,34 @@
 > node -v >=6.9.0
 
 ## 目录介绍
-> app 路由和视图
-> assets 静态和公共资源
-> bin 程序入口
-> config 配置文件
-> document API文档
-> logs 日志
-> middleware 中间件
-> service 主要业务逻辑
-> test 单元测试
+|- bin 程序入口
+|
+|- config 配置文件
+|
+|- app 路由和视图
+|- |- controller 程序逻辑分发层
+|- |- service 网络服务层
+|- |- views 视图层
+|
+|- middleware 中间件
+|- |- body 程序逻辑分发层
+|- |- error 网络服务层
+|- |- router 视图层
+|- |- static 静态资源层
+|- |- router 路由层
+|
+|- assets 静态资源 图片/font等 
+|
+|- utils  工具库
+|
+|- test 单元测试
+|
+|- document API文档
+|
+|- logs 日志
+
+## 技术模块及文档地址
+1. [koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
 
 ## 业务分层
 
@@ -49,16 +68,4 @@
 ## 部署
 
 dockerFile + Jenkins
-
-## soa 联系人
-*  memcachedClient  缓存服务器
-*  userClient  邹梦雨
-*  noticeClient 杨雨姗
-*  cmsClient 邹梦雨
-*  userSOAClient  邹梦雨
-*  couponUserSOAClient 邹梦雨
-
-
-
-
 

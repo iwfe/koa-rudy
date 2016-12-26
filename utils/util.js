@@ -48,7 +48,7 @@ exports.replace = function replace(obj, data) {
  * @param  {array}  _result   递归参数，忽略
  * @return {array}            文件list
  */
-exports.pathls = function pathls(dir, _pending, _result) {
+exports.pathLS = function pathLS(dir, _pending, _result) {
     _pending = _pending ? _pending++ : 1;
     _result = _result || [];
 
@@ -62,7 +62,7 @@ exports.pathls = function pathls(dir, _pending, _result) {
     if (stat.isDirectory()) {
         let files = fs.readdirSync(dir);
         files.forEach(function(part) {
-            pathls(path.join(dir, part), _pending, _result);
+            pathLS(path.join(dir, part), _pending, _result);
         });
         if (--_pending === 0) {
             return _result;
