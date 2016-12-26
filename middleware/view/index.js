@@ -39,7 +39,6 @@ module.exports = function view(settings) {
             } = settings;
         let viewPath = path.join(root,subViewName+viewExt);
         // layout外层
-        console.log(fileCache);
         let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
         // 生产环境缓存layout，减少io操作
         if(process.env['NODE_ENV']=='prod'){
@@ -52,7 +51,7 @@ module.exports = function view(settings) {
         let renderFn = ejs.compile(tpl, {
             localsName:"locals", // 变量的命名空间
             _with: true, //使用with结构渲染
-            compileDebug: settings.debug,
+            compileDebug: process.env['NODE_ENV']!='prod',
             delimiter: settings.delimiter || '%' //使用默认的%符号
         });
         return renderFn(options);
