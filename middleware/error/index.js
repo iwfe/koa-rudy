@@ -16,7 +16,7 @@ winston.add(winston.transports.File, {
 
 module.exports = function (){
     return function (ctx, next) {
-        return next().then().catch(err => {
+        return next().catch(err => {
             switch (err.status) {
                 case 400:
                     break;

@@ -41,16 +41,32 @@ app.use(middleware.view({
   root:path.join(__dirname, '../app/views')
 }));
 
+/**
+ * 404 or 500错误页面
+ */
+app.use(async(ctx, next) => {
+  try {
+    await next();
+    const status = ctx.status || 404;
+    if (status === 404) {
+      ctx.throw(404);
+    }
+  } catch (err) {
+    await ctx.render('404',{staticTag:404})  }
+});
+
 
 /**
  * 处理路由
  * 需要指定文件地址
  */
+
 app.use(middleware.router(path.join(__dirname, '../app/controller')));
 
 /**
  * 处理数据
  */
 app.use(middleware.body());
+
 
 module.exports = app;
