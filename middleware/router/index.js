@@ -16,13 +16,29 @@ const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
 const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
-module.exports = function(_root) {
+module.exports = function(setting) {
+    let { root, path, website } = setting;
 
-    if (!_root) {
-        throw new Error('router setting _root');
+    if (!path) {
+        throw new Error('router setting path');
     }
 
-    util.pathls(_root).forEach(function(filePath) {
+    if (!root) root = '/';
+
+    if (!website) {
+        website = global._rudyConfig.website || '//'
+    }
+
+    let appRoot = root != '/' ? '/' + root + '/' : '';
+
+    // all resources
+    let resourcesList = {};
+    router.get(appRoot, (ctx, next) => {
+        ctx.body = JSON.stringify(resourcesList);
+    })
+
+    // resources parse
+    util.pathls(path).forEach(function(filePath) {
 
         if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1) {
             return;
@@ -30,27 +46,35 @@ module.exports = function(_root) {
 
         // router path
         let rootPath = filePath.match(routerReg)[1];
+
+        // resources actions
+        let actionList = [];
+        router.get(`${appRoot}${rootPath}`, (ctx, next) => {
+            ctx.body = JSON.stringify(actionList);
+        })
+
+        resourcesList[`${rootPath}_url`] = `${website}${appRoot}${rootPath}`;
+
         // require module
-        let exportFuncs = require(filePath);
+        let actions = require(filePath);
 
-        let appRoot = '/';
+        actions.length && actions.map((item, index) => {
+            let { method, url, version, action } = item;
+            let routerPath = rootPath;
 
-        Object.keys(exportFuncs).forEach(item => {
+            !method ? method = 'get' : '';
+            version ? routerPath = `${appRoot}${version}/${routerPath}` :
+                routerPath = `${appRoot}${routerPath}`;
 
-            let pathparss = item.match(methodReg);
-            let method = pathparss[1];
-            let routername = pathparss[2];
-            let routerfn = exportFuncs[item];
+            routerPath = `${routerPath}${url}`;
 
-            method ? '' : method = 'get';
-            routername ? routername = rootPath + routername : rootPath;
+            delete item.url;
 
-            if (exportFuncs['_root']) {
-                appRoot = exportFuncs['_root'] + '/';
-            }
+            item.href = `${website}${routerPath}`;
 
-            routername = appRoot + routername;
-            router[method](routername, routerfn);
+            actionList.push(item);
+
+            router[method](routerPath, action);
         })
 
     });

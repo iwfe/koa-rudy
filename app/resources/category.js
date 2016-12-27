@@ -5,22 +5,27 @@
  * @Last Modified time: 2016-11-11 16:31:09
  */
 
-module.exports = {
-    '/': async function(ctx, next) {
-        await ctx.render('index', {
-            title: 'koa-rudy'
-        });
+module.exports = [{
+        title: 'get detail v1',
+        url: '/:id',
+        version: 'v1',
+        action: async function(ctx, next) {
+            await ctx.render('index', {
+                title: 'koa-rudy'
+            });
+        }
     },
 
-    'get:/list': function(ctx, next) {
-        ctx.body = ctx.params.id;
+    {
+        title: 'get detail v2',
+        doc: '',
+        method: 'get',
+        url: '/:id',
+        version: 'v2',
+        action: async function(ctx, next) {
+            await ctx.render('index', {
+                title: 'koa-rudy'
+            });
+        }
     },
-
-    'get:/:id': function(ctx, next) {
-
-    },
-
-    'del:/:id': function(ctx, next) {
-
-    }
-}
+]

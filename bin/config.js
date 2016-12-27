@@ -19,6 +19,8 @@ const baseConfig = {
     // 接口超时时间
     timeout: 5000,
 
+    website: 'http://127.0.0.1:3000',
+
     // 错误日志文件
     errorLog: 'error-logs.log',
 

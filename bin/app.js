@@ -36,7 +36,7 @@ app.use(middleware.assstatic('.'));
  * @type {[type]}
  */
 app.use(middleware.view({
-    root: path.join(__dirname, '../app/views')
+    path: path.join(__dirname, '../app/views')
 }));
 
 
@@ -44,7 +44,11 @@ app.use(middleware.view({
  * 处理路由
  * 需要指定文件地址
  */
-app.use(middleware.router(path.join(__dirname, '../app/resources')));
+app.use(middleware.router({
+    root: 'api',
+    website: '',
+    path: path.join(__dirname, '../app/resources')
+}));
 
 
 /**

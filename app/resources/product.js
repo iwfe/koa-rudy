@@ -6,22 +6,22 @@
  */
 
 
-module.exports = {
-    '/': async function(ctx, next) {
-        await ctx.render('index', {
-            title: 'koa-rudy'
-        });
-    },
+// module.exports = {
+//     '/': async function(ctx, next) {
+//         await ctx.render('index', {
+//             title: 'koa-rudy'
+//         });
+//     },
 
-    'get:/:id': function(ctx, next) {
-        ctx.body = ctx.params.id;
-    },
+//     'get:/:id': function(ctx, next) {
+//         ctx.body = ctx.params.id;
+//     },
 
-    'del:/:id': function(ctx, next) {
+//     'del:/:id': function(ctx, next) {
 
-    },
+//     },
 
-    'post:/:id': function(ctx, next) {
+//     'post:/:id': function(ctx, next) {
 
-    }
-}
+//     }
+// }

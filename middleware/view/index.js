@@ -32,24 +32,24 @@ var defaultSettings = {
 
 module.exports = function view(settings) {
 
-    if (!settings || !settings.root) {
-        throw new Error('settings.root required');
+    if (!settings || !settings.path) {
+        throw new Error('settings.path required');
     }
 
-    settings.root = path.resolve(process.cwd(), settings.root);
+    settings.path = path.resolve(process.cwd(), settings.path);
 
     let cache = Object.create(null);
 
     copy(defaultSettings).to(settings);
 
-    settings.viewExt = settings.viewExt
-        ? '.' + settings.viewExt.replace(/^\./, '')
-        : '';
+    settings.viewExt = settings.viewExt ?
+        '.' + settings.viewExt.replace(/^\./, '') :
+        '';
 
     async function render(view, options) {
         view += settings.viewExt;
-        var viewPath = path.join(settings.root, view);
-        
+        var viewPath = path.join(settings.path, view);
+
         if (settings.cache && cache[viewPath]) {
             return cache[viewPath].call(options.scope, options);
         }
@@ -82,11 +82,11 @@ module.exports = function view(settings) {
 
                 copy(this.state).to(context);
                 copy(_context).to(context);
-                
+
                 var html = await render(view, context);
-                
+
                 var layout = context.layout === false ? false : (context.layout || settings.layout);
-                
+
                 if (layout) {
                     context.body = html;
                     html = await render(layout, context);
