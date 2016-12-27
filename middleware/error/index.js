@@ -18,21 +18,16 @@ module.exports = function (){
             const status = ctx.status || 404;
             if (status === 404) {
                 ctx.redirect('/');
-                global.logger.error('404 page redirect to index page');
+                global.logger.warn('404 page redirect to index page');
             }
         }).catch(err => {
-            switch (err.status) {
-                case 400:
-                    break;
-                case 500:
-                    global.logger.error(err);
-                    break;
-                default:
-                    ctx.status = 500;
-                    global.logger.error(err);
-                    break;
-            }
-            // ctx.render('404',{staticTag:404});
+            // 处理400、500等未捕获的错误
+            if(err.status){
+                global.logger.error(JSON.strinify(err,2,2));
+            }else{
+                //未知错误
+               global.logger.error(err.name + '\n' + err.message);
+            };
             ctx.body = err;
         })
     }

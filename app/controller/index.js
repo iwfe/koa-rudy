@@ -16,7 +16,8 @@ module.exports = {
     },
     'get:/github': async function(ctx, next){
         //let gitData = await getIndexInfo();
-        let gitData = {a:1};
+        let gitData = Object.keys(ctx.requsest.query);
+        
         successToPage(ctx, 'index/index', Object.assign({
             title: 'github展示',
             staticTag:'index'
