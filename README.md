@@ -45,7 +45,9 @@
 2. [Promise网络请求axios](https://github.com/mzabriskie/axios)
 3. [ejs模板渲染](https://github.com/mde/ejs)
 4. [工具相关lodash](https://github.com/lodash/lodash)
-    > [文档](https://lodash.com/docs/4.17.2)
+
+    1. [lodash文档](https://lodash.com/docs/4.17.2)
+    2. [shelljs](https://github.com/shelljs/shelljs)
     
 ## 业务分层
 

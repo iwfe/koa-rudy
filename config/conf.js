@@ -1,8 +1,8 @@
 /*
 * @Author: enzo
 * @Date:   2016-11-08 11:39:58
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-11-29 15:29:34
+* @Last Modified by:   slashhuang
+* @Last Modified time: 2016-12-26 15:29:34
 */
 const baseConfig = {
 
@@ -13,14 +13,9 @@ const baseConfig = {
     testPort: 3001,
 
     // 接口超时时间
-    timeout: 5000,
-
-    // 错误日志文件
-    errorLog: 'error-logs.log',
-
-    // info日志文件
-    infoLog: 'info-logs.log'
+    timeout: 5000
 };
+const logger = require('./logs/conf.js');
 
 module.exports = function config(env) {
 
@@ -28,5 +23,5 @@ module.exports = function config(env) {
 
     let configFile = require('./'+env + '.js');
 
-    return Object.assign(baseConfig, configFile);
+    return Object.assign(baseConfig, configFile,{logger:new logger().logger});
 };
