@@ -26,6 +26,7 @@ module.exports = function (){
             if(status){
                 if (status === 404) {
                     global.logger.warn('request Path is ',ctx.url,'404 page redirect => path "/"');
+                    ctx.status = 404;
                     ctx.redirect('/');
                 }else{
                     global.logger.error(JSON.stringify(err,2,2));

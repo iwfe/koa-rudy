@@ -30,7 +30,7 @@ class Logger {
         try{
             fs.readdirSync(this.envLogPath);
         }catch(e){
-            console.log('make log directory now ')
+            console.log(`make ${this.env} log directory now `)
             shell.mkdir('-p',this.envLogPath);
         }
     }
