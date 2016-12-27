@@ -47,7 +47,7 @@
 4. [工具相关lodash](https://github.com/lodash/lodash)
 
     1. [lodash文档](https://lodash.com/docs/4.17.2)
-    2. [shelljs](https://github.com/shelljs/shelljs)
+    2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
     
 ## 业务分层
 
@@ -92,55 +92,23 @@ dockerFile + Jenkins
  */
 delegate(proto, 
  'response'------ level------ 
- ['attachment' 
- 'redirect' 
- 'remove' 
- 'vary' 
- 'set' 
- 'append' 
- 'flushHeaders' 
- 'status' 
- 'message' 
- 'body' 
- 'length' 
- 'type' 
- 'lastModified' 
- 'etag' 
- 'headerSent' 
- 'writable' ];
+ ['attachment','redirect','remove' 
+ 'vary','set' ,'append','flushHeaders' ,'status' 
+ 'message' ,'body' ,'length' ,'type' ,'lastModified' 
+ 'etag', 'headerSent','writable' ];
 
 /**
  * Request delegation.
  */
 delegate(proto, 
  'request' ------ level------ 
- ['acceptsLanguages' 
- 'acceptsEncodings' 
- 'acceptsCharsets' 
- 'accepts' 
- 'get' 
- 'is' 
- 'querystring' 
- 'idempotent' 
- 'socket' 
- 'search' 
- 'method' 
- 'query' 
- 'path' 
- 'url' 
- 'origin' 
- 'href' 
- 'subdomains' 
- 'protocol' 
- 'host' 
- 'hostname' 
- 'header' 
- 'headers' 
- 'secure' 
- 'stale' 
- 'fresh' 
- 'ips' 
- 'ip']
+ ['acceptsLanguages' , 'acceptsEncodings' ,'acceptsCharsets',
+ 'accepts' , 'get' , 'is', 
+ 'querystring' ,'idempotent' ,'socket' ,
+ 'search' , 'method'  ,'query' , 'path' ,
+ 'url' , 'origin' ,'href' , 'subdomains' ,
+ 'protocol' ,'host','hostname' ,'header' ,
+ 'headers','secure' ,'stale' ,'fresh' ,'ips' 'ip']
 
 ```
 
