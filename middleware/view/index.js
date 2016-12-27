@@ -41,7 +41,7 @@ module.exports = function view(settings) {
         // layout外层
         let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
         // 生产环境缓存layout，减少io操作
-        if(process.env['NODE_ENV']=='prod'){
+        if(process.env['NODE_ENV']!='dev'){
             fileCache.tpl = tpl;
         }
         // 渲染的模板内容
