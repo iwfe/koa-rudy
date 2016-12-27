@@ -17,7 +17,7 @@ module.exports = function (){
         .then(()=>{
             const status = ctx.status;
             if (status === 404) {
-                ctx.throw('404 page',404,dd)
+                ctx.throw('404 page',404)
             }
         })
         .catch(err => {
