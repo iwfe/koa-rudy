@@ -84,3 +84,63 @@
 
 dockerFile + Jenkins
 
+## 技术提示
+```js
+    koa 代理列表
+    /**
+ * Response delegation.
+ */
+delegate(proto, 
+ 'response'------ level------ 
+ ['attachment' 
+ 'redirect' 
+ 'remove' 
+ 'vary' 
+ 'set' 
+ 'append' 
+ 'flushHeaders' 
+ 'status' 
+ 'message' 
+ 'body' 
+ 'length' 
+ 'type' 
+ 'lastModified' 
+ 'etag' 
+ 'headerSent' 
+ 'writable' ];
+
+/**
+ * Request delegation.
+ */
+delegate(proto, 
+ 'request' ------ level------ 
+ ['acceptsLanguages' 
+ 'acceptsEncodings' 
+ 'acceptsCharsets' 
+ 'accepts' 
+ 'get' 
+ 'is' 
+ 'querystring' 
+ 'idempotent' 
+ 'socket' 
+ 'search' 
+ 'method' 
+ 'query' 
+ 'path' 
+ 'url' 
+ 'origin' 
+ 'href' 
+ 'subdomains' 
+ 'protocol' 
+ 'host' 
+ 'hostname' 
+ 'header' 
+ 'headers' 
+ 'secure' 
+ 'stale' 
+ 'fresh' 
+ 'ips' 
+ 'ip']
+
+```
+
