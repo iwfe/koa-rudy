@@ -17,7 +17,7 @@ module.exports = function (){
         .then(()=>{
             const status = ctx.status;
             if (status === 404) {
-                ctx.throw('404 page',404)
+                ctx.throw('404 page',404,dd)
             }
         })
         .catch(err => {
@@ -33,7 +33,7 @@ module.exports = function (){
                 }
             }else{
                 //未知错误
-               global.logger.error(err.name + '\n' + err.message);
+               global.logger.error(err.name + '\n' +err.message+'\n'+ err.stack);
                ctx.body = err.stack;
                ctx.status = 500;
             };   
