@@ -14,11 +14,9 @@ const logConf = {
     //日志文件夹
     folderName : 'logs',
     // 错误日志文件
-    warnLog :  'warn-logs.log',
+    errLog :  'error-logs.log',
     // info日志文件
-    infoLog : 'info-logs.log',
-    // 异常日志
-    exceptionLog: 'exception-logs.log'
+    infoLog : 'info-logs.log'
 };
 class Logger {
     constructor() {
@@ -42,7 +40,7 @@ class Logger {
         this.envLogPath = path.resolve( this.folderPath,this.env);
     }
     instantiateLog() {
-        let { warnLog,infoLog,exceptionLog } = this.logConf;
+        let { infoLog,errLog } = this.logConf;
         this.logger = new (winston.Logger)({
             transports: [
                 new (winston.transports.Console)(),
@@ -52,19 +50,11 @@ class Logger {
                     level: 'info',
                     json: true
                 }),
-                new (winston.transports.File)({
-                    name: 'warn-file',
-                    filename: path.resolve(this.envLogPath,warnLog) ,
-                    level: 'warn',
-                    json: true
-                }),
                 new winston.transports.File({ 
-                    name: 'exception-file',
-                    filename: path.resolve(this.envLogPath,exceptionLog),
-                    handleExceptions: true,
-                    json: true,
+                    name: 'error-file',
+                    filename: path.resolve(this.envLogPath,errLog) ,
                     level: 'error',
-                    humanReadableUnhandledException: true 
+                    json: true
                 })
             ]
         });
