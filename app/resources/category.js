@@ -10,7 +10,8 @@ module.exports = [
     {
         title: 'get detail v1',
         url: '/:id',
-        version: 'v1',
+        version: 'wx',
+        test: '11',
         action: async function(ctx, next) {
             await ctx.render('index', {
                 title: 'koa-rudy'
@@ -22,7 +23,7 @@ module.exports = [
         title: 'get detail v2',
         doc: '',
         method: 'get',
-        version: 'v2',
+        version: 'pc',
         url: '/:id',
         action: async function(ctx, next) {
             await ctx.render('index', {
