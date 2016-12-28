@@ -1,8 +1,9 @@
+
 /*
 * @Author: enzo
 * @Date:   2016-11-08 11:39:58
-* @Last Modified by:   slashhuang
-* @Last Modified time: 2016-12-26 15:29:34
+* @Last Modified by:   enzo
+* @Last Modified time: 2016-12-28 17:38:25
 */
 const baseConfig = {
 
@@ -13,9 +14,12 @@ const baseConfig = {
     testPort: 3001,
 
     // 接口超时时间
-    timeout: 5000
+    timeout: 5000,
+
+    // api site
+    website: 'http://127.0.0.1:3000',
 };
-const logger = require('./logs/conf.js');
+
 
 module.exports = function config(env) {
 
@@ -23,5 +27,5 @@ module.exports = function config(env) {
 
     let configFile = require('./'+env + '.js');
 
-    return Object.assign(baseConfig, configFile,{logger:new logger().logger});
+    return Object.assign(baseConfig, configFile);
 };

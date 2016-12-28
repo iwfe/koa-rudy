@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./index.js",
-    "dev": "NODE_ENV=dev ./node_modules/.bin/nodemon --use_strict ./index.js",
-    "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./index.js",
+    "dev": "NODE_ENV=develop ./node_modules/.bin/nodemon --use_strict ./index.js",
+    "prod": "NODE_ENV=production ./node_modules/.bin/nodemon --use_strict ./index.js",
     "mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha ./test/test.js",
     "doc": "node_modules/.bin/yuiJsDoc --config config/doc/docConfig.js",
     "pwapi": "./node_modules/.bin/anywhere -d ./document",

@@ -4,20 +4,14 @@
  * 16.12.23
  */
 
-require("babel-register");
-
 const debug = require('debug')('rudy:server');
-/**
- * 切换不同的开发环境
- */
-let config =  require('./config/conf.js')(process.env['NODE_ENV']);
-global._appConfig = config;
-global.logger = config['logger'];
 
-let app = require('./bin/app');
+// 获取配置文件
+const config =  global._appConfig = require('./config/index.js')(process.env['NODE_ENV']);
 
-let server = require('http').createServer(app.callback());
-
-console.log('启动端口'+config.port);
+const app = require('./bin/app');
+const server = require('http').createServer(app.callback());
 
 server.listen(config.port); 
+
+console.log('启动端口'+config.port);
