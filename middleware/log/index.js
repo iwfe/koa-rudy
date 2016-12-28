@@ -13,6 +13,8 @@ const path = require('path');
  */
 module.exports = function (){
     return function (ctx, next) {
+        //将exception处理挂在global对象上
+        global.throw = ctx.throw;
         return next()
         .then(()=>{
             const status = ctx.status;
@@ -29,7 +31,7 @@ module.exports = function (){
                     ctx.status = 404;
                     ctx.redirect('/');
                 }else{
-                    global.logger.error(JSON.stringify(err,2,2));
+                    global.logger.error(err.name + '\n' +err.message+'\n'+ err.stack);
                 }
             }else{
                 //未知错误
