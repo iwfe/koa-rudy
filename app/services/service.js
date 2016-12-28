@@ -2,13 +2,11 @@
  * @Author: enzo
  * @Date:   2016-11-21 10:41:27
  * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-29 17:18:47
+ * @Last Modified time: 2016-12-28 18:10:59
  */
 
-import winston from "winston";
 import axios from "axios";
 import path from "path";
-import copy from "copy-to";
 import querystring from 'querystring';
 
 /**
@@ -16,7 +14,7 @@ import querystring from 'querystring';
  */
 
 const instance = axios.create({
-    timeout: global._rudyConfig.timeout
+    timeout: global._appConfig.timeout
 });
 
 export default class Base {

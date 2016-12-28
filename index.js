@@ -7,7 +7,7 @@
 const debug = require('debug')('rudy:server');
 
 // 获取配置文件
-const config =  global._appConfig = require('./config/index.js')(process.env['NODE_ENV']);
+const config = global._appConfig = require('./config/index.js')(process.env['NODE_ENV']);
 
 const app = require('./bin/app');
 const server = require('http').createServer(app.callback());

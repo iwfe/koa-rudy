@@ -1,14 +1,12 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-21 10:41:27
- * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-12-26 15:18:47
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-12-28 18:09:04
  */
 
-import winston from "winston";
 import axios from "axios";
 import path from "path";
-import copy from "copy-to";
 import querystring from 'querystring';
 
 /**
@@ -27,10 +25,13 @@ requestInstance.interceptors.response.use(function(response) {
 });
 
 export default class BaseHttp {
+
     constructor() {
+
         // soa 从 global._appconfig 获取
         this.host = '';
     }
+
     /**
      * 基本的请求数据结构
      * @param data
@@ -43,7 +44,7 @@ export default class BaseHttp {
      * }
      */
     async fetch(data) {
-        let param = {
+        const param = {
             method: data.method || 'get',
             url: this.host + data.url,
             data: data.params
@@ -53,13 +54,7 @@ export default class BaseHttp {
                 return response.data;
             })
             .catch(function(error) {
-                console.log(error)
+                global.throw('SOA请求出错', 500);
             });
-    }
-    /**
-     * 日志
-     */
-    log() {
-        return winston;
     }
 }
