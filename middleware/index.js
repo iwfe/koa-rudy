@@ -13,4 +13,4 @@ exports.view = require('./view');
 
 exports.assstatic = require('./static');
 
-exports.error = require('./error');
+exports.log = require('./log');

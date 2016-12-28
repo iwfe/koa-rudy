@@ -22,7 +22,7 @@ const app = new koa();
  * 普通错误 throw new Error('Error Message');
  */
 
-app.use(middleware.error());
+app.use(middleware.log());
 
 
 /**
