@@ -9,7 +9,7 @@ const debug = require('debug')('rudy:app');
 const koa = require('koa');
 const middleware = require('../middleware');
 const path = require('path');
-const pages = require('../app/index');
+const pages = require('../app/pages/pages.js');
 
 const app = new koa();
 

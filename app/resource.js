@@ -5,8 +5,6 @@
  * @Last Modified time: 2016-11-29 10:26:58
  */
 
-import qrcode from "qr-image";
-import images from "images";
 
 const SUCCESS_TEXT = '处理成功';
 const ERRER_TEXT = '处理失败';
