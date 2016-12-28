@@ -25,9 +25,7 @@ module.exports = function(setting) {
 
     if (!root) root = '/';
 
-    if (!website) {
-        website = global._rudyConfig.website || '//'
-    }
+    if (!website) website = '//';
 
     let appRoot = root != '/' ? '/' + root + '/' : '';
 

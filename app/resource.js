@@ -33,8 +33,8 @@ const ERRER_TEXT = '处理失败';
  * @return {[type]}       [description]
  */
 
-export function successTOpage(ctx, page, param) {
-    ctx.body = ctx.render(page, param)
+export function successToView(ctx, view, param) {
+    ctx.body = ctx.render(view, param)
 }
 
 
@@ -45,7 +45,7 @@ export function successTOpage(ctx, page, param) {
  * @return {[type]}       [description]
  */
 
-export function successTojson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
+export function successToJson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
     let data = {
         data: param,
         status: status,
@@ -62,7 +62,7 @@ export function successTojson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
  * @return {[type]} param   [description]
  */
 
-export function errorTOjson(ctx, param, status = 500, msg = ERRER_TEXT) {
+export function errorToJson(ctx, param, status = 500, msg = ERRER_TEXT) {
     let data = {
         data: param,
         status: status,

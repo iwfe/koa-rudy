@@ -5,7 +5,9 @@
  * @Last Modified time: 2016-11-11 16:31:09
  */
 
-module.exports = [{
+module.exports = [
+
+    {
         title: 'get detail v1',
         url: '/:id',
         version: 'v1',
@@ -20,12 +22,13 @@ module.exports = [{
         title: 'get detail v2',
         doc: '',
         method: 'get',
-        url: '/:id',
         version: 'v2',
+        url: '/:id',
         action: async function(ctx, next) {
             await ctx.render('index', {
                 title: 'koa-rudy'
             });
         }
-    },
+    }
+
 ]

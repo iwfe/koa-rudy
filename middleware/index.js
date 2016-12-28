@@ -1,9 +1,9 @@
 /*
-* @Author: enzo
-* @Date:   2016-11-08 15:08:35
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-11-11 15:26:20
-*/
+ * @Author: enzo
+ * @Date:   2016-11-08 15:08:35
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-11-11 15:26:20
+ */
 
 
 /**
@@ -19,11 +19,11 @@ exports.body = require('./body');
 
 
 /**
- * [路由收集器]
+ * [资源收集器]
  * @type {[type]}
  */
 
-exports.router = require('./router');
+exports.resources = require('./resources');
 
 
 /**
