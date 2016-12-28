@@ -13,6 +13,7 @@ class GithubTest extends BaseHttp {
 let TestInstance = new GithubTest();
 
 export async function getIndexInfo() {
+    global.throw('405 page',400)
     return await TestInstance.fetch({
         url:'/orgs/iwfe'
     }).then(function(data) {

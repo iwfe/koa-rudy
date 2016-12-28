@@ -15,9 +15,7 @@ module.exports = {
         });
     },
     'get:/github': async function(ctx, next){
-        //let gitData = await getIndexInfo();
-        let gitData = Object.keys(ctx.request.query);
-        
+        let gitData = await getIndexInfo();        
         successToPage(ctx, 'index/index', Object.assign({
             title: 'github展示',
             staticTag:'index'
