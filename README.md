@@ -25,7 +25,7 @@
 |  
 |- middleware 中间件  
 |- |- body 程序逻辑分发层  
-|- |- error 网络服务层  
+|- |- log 日志系统
 |- |- router 视图层  
 |- |- static 静态资源层  
 |- |- router 路由层  

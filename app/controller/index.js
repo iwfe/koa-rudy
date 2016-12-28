@@ -6,7 +6,7 @@
 */
 
 import { successToPage } from './_base.js';
-import { getIndexInfo } from '../service/index';
+import { getIndexInfo } from '../services/index';
 module.exports = {
     'get:/': async function(ctx, next){
         successToPage(ctx, 'welcome', {
