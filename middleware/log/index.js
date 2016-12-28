@@ -25,14 +25,10 @@ module.exports = function (){
         .catch(err => {
             // 处理400、500等未捕获的错误
             let { status }= err;
-            if(status){
-                if (status === 404) {
+            if(status === 404){
                     global.logger.warn('request Path is ',ctx.url,'404 page redirect => path "/"');
                     ctx.status = 404;
                     ctx.redirect('/');
-                }else{
-                    global.logger.error(err.name + '\n' +err.message+'\n'+ err.stack);
-                }
             }else{
                 //未知错误
                global.logger.error(err.name + '\n' +err.message+'\n'+ err.stack);
