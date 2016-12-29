@@ -37,6 +37,6 @@ module.exports = {
     410: STATUS_INFO,
     422: STATUS_INFO,
     500: STATUS_ERROR,
-    700: STATUS_INFO,
+    700: STATUS_ERROR,
     800: STATUS_ERROR,
 }

@@ -21,6 +21,7 @@ var defaultSettings = {
     writeResp: true
 };
 
+// TUDO 可以渲染代码片段
 module.exports = function view(settings) {
     if (!settings || !settings.root) {
         throw new Error('settings.root required');

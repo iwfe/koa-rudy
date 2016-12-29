@@ -9,7 +9,7 @@ const winston = require('winston');
 const path = require('path');
 
 winston.add(winston.transports.File, {
-    filename: path.join(__dirname, `../../logs/${logPath}`)
+    filename: ''
 });
 
 /**
@@ -25,7 +25,7 @@ const error = function(setting) {
             .then(() => {
                 const status = ctx.status;
                 if (status === 404) {
-                    ctx.throw('404 page', 404)
+                    winston.warn('request Path is ', ctx.url, '404 page redirect');
                 }
             })
             .catch(err => {
