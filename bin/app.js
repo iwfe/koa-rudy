@@ -16,15 +16,14 @@ const router = require('../app/router.js');
 const app = new koa();
 
 /**
- * 处理错误
+ * logger
  *
- * 全局处理，各层的错误全部抛出由该中间件捕获
- * 带状态码 util.throw('Error Message', 500);
- * 普通错误 throw new Error('Error Message');
  */
 
-app.use(middleware.log());
-
+app.use(middleware.log({
+    path: '文件路径',
+    status: '状态管理'
+}));
 
 /**
  * 处理静态文件

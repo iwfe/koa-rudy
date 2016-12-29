@@ -8,12 +8,16 @@
 const winston = require('winston');
 const path = require('path');
 
-
+winston.add(winston.transports.File, {
+    filename: path.join(__dirname, `../../logs/${logPath}`)
+});
 
 /**
- * 404 or 500错误页面
+ * 错误处理
  */
-module.exports = function() {
+const error = function(setting) {
+    let { path, status } = setting;
+
     return function(ctx, next) {
         //将exception处理挂在global对象上
         global.throw = ctx.throw;
@@ -29,12 +33,13 @@ module.exports = function() {
                 // 处理400、500等未捕获的错误
                 let { status } = err;
                 if (status === 404) {
+                    winston.warn('request Path is ', ctx.url, '404 page redirect');
                     // global.logger.warn('request Path is ',ctx.url,'404 page redirect => path "/"');
                     // ctx.status = 404;
                     // ctx.redirect('/');
                 } else {
                     //未知错误
-                    global.logger.error(err.name + '\n' + err.message + '\n' + err.stack);
+                    winston.error(err.name + '\n' + err.message + '\n' + err.stack);
                     ctx.body = err.stack;
                     ctx.status = 500;
                 };
