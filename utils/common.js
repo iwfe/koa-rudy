@@ -1,5 +1,13 @@
+/*
+ * @Author: enzo
+ * @Date:   2016-11-08 15:02:53
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-11-23 16:44:36
+ */
+
 const path = require('path');
 const fs = require('fs');
+
 import copy from "copy-to";
 import _ from "lodash";
 import dateUtils from "date-utils";
@@ -48,7 +56,7 @@ exports.replace = function replace(obj, data) {
  * @param  {array}  _result   递归参数，忽略
  * @return {array}            文件list
  */
-exports.pathLS = function pathLS(dir, _pending, _result) {
+exports.pathls = function pathLS(dir, _pending, _result) {
     _pending = _pending ? _pending++ : 1;
     _result = _result || [];
 
@@ -233,9 +241,9 @@ export function stringDot(str) {
     return result + dot;
 }
 
-export function decimalFormat (float){
-    return function(){
-        
+export function decimalFormat(float) {
+    return function() {
+
     }
 }
 

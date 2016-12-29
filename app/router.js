@@ -20,7 +20,7 @@ router.get('/', (ctx, next) => {
 /**
  * about
  */
-router.get('/github', (ctx, next) => {
+router.get('/github', async(ctx, next) => {
     let gitData = await getIndexInfo();
 
     successToPage(ctx, 'about', Object.assign({

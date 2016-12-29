@@ -10,7 +10,7 @@ const debug = require('debug')('rudy:router');
 const router = require('koa-router')();
 const path = require('path');
 const fs = require('fs');
-const util = require('../../utils/util.js');
+const util = require('../../utils/common.js');
 
 const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
@@ -42,23 +42,31 @@ module.exports = function(setting) {
             return;
         }
 
-        // router path
-        let rootPath = filePath.match(routerReg)[1];
-
-        // resources actions
+        // require module
+        let apis = require(filePath);
+        let { actions, resourceName, describe } = apis;
         let actionList = [];
-        router.get(`${appRoot}${rootPath}`, (ctx, next) => {
+
+        //  must be resourceName
+        if (!resourceName) {
+            throw new Error(`${filePath} the lack of resourceName`);
+        }
+
+        // reg router
+        router.get(`${appRoot}${resourceName}`, (ctx, next) => {
             ctx.body = JSON.stringify(actionList);
         })
 
-        resourcesList[`${rootPath}_url`] = `${website}${appRoot}${rootPath}`;
+        // add resource
+        resourcesList[`${resourceName}`] = {
+            describe: describe || '未添加描述',
+            href: `${website}${appRoot}${resourceName}`
+        };
 
-        // require module
-        let actions = require(filePath);
-
-        actions.length && actions.map((item, index) => {
+        // parse action
+        actions && actions.length && actions.map((item, index) => {
             let { method, url, version, action } = item;
-            let routerPath = rootPath;
+            let routerPath = resourceName;
 
             !method ? method = 'get' : '';
             version ? routerPath = `${appRoot}${version}/${routerPath}` :

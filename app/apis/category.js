@@ -4,15 +4,18 @@
  * @Last Modified by:   enzo
  * @Last Modified time: 2016-11-11 16:31:09
  */
+import { successToJson } from '../response';
 
-const resourceName = 'category'
-const describe = '产品分类'
+const resourceName = 'category';
+const describe = '产品分类';
 const actions = [{
         title: 'get detail v1',
         url: '/:id',
         version: 'v1',
         action: async function(ctx, next) {
-
+            successToJson(ctx, {
+                test: 1
+            })
         }
     },
 
@@ -30,9 +33,3 @@ const actions = [{
 
 
 export { actions, resourceName, describe };
-
-// module.exports = {
-//     resourceName: 'category',
-//     describe: '产品分类',
-//     actions:
-// }

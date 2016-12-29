@@ -3,7 +3,7 @@
  * 首页提供的服务
  */
 
-import Client from './Client.js';
+import Client from '../Client';
 class GithubTest extends Client {
     constructor() {
         super();

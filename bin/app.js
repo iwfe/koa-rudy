@@ -11,7 +11,7 @@ const debug = require('debug')('rudy:app');
 const koa = require('koa');
 const middleware = require('../middleware');
 const path = require('path');
-const pages = require('../app/pageRouter.js');
+const router = require('../app/router.js');
 
 const app = new koa();
 
@@ -44,7 +44,7 @@ app.use(middleware.view({
 
 
 // 页面
-app.use(pages.routes());
+app.use(router.routes());
 
 /**
  * 数据资源路由
@@ -53,9 +53,9 @@ app.use(pages.routes());
  * @website api地址
  * @path 资源路径
  */
-app.use(middleware.resources({
+app.use(middleware.router({
     root: 'api',
-    website: global._rudyConfig.website,
+    website: global._appConfig.website,
     path: path.join(__dirname, '../app/apis')
 }));
 
