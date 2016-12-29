@@ -3,19 +3,23 @@
  * 首页提供的服务
  */
 
-import BaseHttp from './_base.js';
-class GithubTest extends BaseHttp {
+import Client from './Client.js';
+class GithubTest extends Client {
     constructor() {
         super();
         this.host = 'https://api.github.com'
+
+        this.actions = {
+            iefe: '/orgs/iwfe'
+        }
     }
 }
 let TestInstance = new GithubTest();
 
 export async function getIndexInfo() {
-    global.throw('405 page',400)
+    global.throw('405 page', 400)
     return await TestInstance.fetch({
-        url:'/orgs/iwfe'
+        url: 'iefe'
     }).then(function(data) {
         return data;
     }, function(error) {
