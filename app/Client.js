@@ -37,10 +37,18 @@ export default class Client {
     /**
      * 单独抽出request方法
      * 当子类覆盖fetch时调用该方法进行数据请求
-     * @return null
+     * @return Promise
      */
     request(param = {}) {
         return requestInstance(param);
+    }
+
+    /**
+     * 合并请求
+     * @return Promise
+     */
+    combineRequest() {
+
     }
 
     /**
@@ -63,11 +71,14 @@ export default class Client {
      * }
      */
     async fetch(data) {
+        let soaUrl = data.url && this.actions[data.url];
+
         const param = {
             method: data.method || 'get',
-            url: this.host + data.url,
+            url: `${this.host}${soaUrl}`,
             data: data.params
         };
+
         return await this.request(param)
             .then(function(response) {
                 return response.data;
