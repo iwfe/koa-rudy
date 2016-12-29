@@ -13,7 +13,7 @@ const ejs = require('ejs');
 
 var defaultSettings = {
     cache: true,
-    _with:false, //将所有的值存储到locals大对象里面
+    _with: false, //将所有的值存储到locals大对象里面
     layout: 'layout',
     viewExt: '.html',
     locals: {},
@@ -33,25 +33,25 @@ module.exports = function view(settings) {
 
     async function render(subViewName, options) {
         let {
-                root,
-                layout,
-                viewExt
-            } = settings;
-        let viewPath = path.join(root,subViewName+viewExt);
+            root,
+            layout,
+            viewExt
+        } = settings;
+        let viewPath = path.join(root, subViewName + viewExt);
         // layout外层
-        let tpl =fileCache.tpl || fs.readFileSync(path.join(root,layout+viewExt), 'utf8');
+        let tpl = fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
         // 生产环境缓存layout，减少io操作
-        if(process.env['NODE_ENV']!='dev'){
+        if (process.env['NODE_ENV'] != 'develop') {
             fileCache.tpl = tpl;
         }
         // 渲染的模板内容
-        Utils.addTemplate(options,{templateName:viewPath});
+        Utils.addTemplate(options, { templateName: viewPath });
         Utils.addConst(options);
         Utils.addMethods(options);
         let renderFn = ejs.compile(tpl, {
-            localsName:"locals", // 变量的命名空间
+            localsName: "locals", // 变量的命名空间
             _with: true, //使用with结构渲染
-            compileDebug: process.env['NODE_ENV']!='prod',
+            compileDebug: process.env['NODE_ENV'] != 'production',
             delimiter: settings.delimiter || '%' //使用默认的%符号
         });
         return renderFn(options);

@@ -4,6 +4,7 @@
  * @Last Modified by:   enzo
  * @Last Modified time: 2016-12-28 19:59:04
  */
+import { successToView } from './response';
 
 const router = require('koa-router')();
 
@@ -11,7 +12,7 @@ const router = require('koa-router')();
  * index
  */
 router.get('/', (ctx, next) => {
-    successToPage(ctx, 'welcome', {
+    successToView(ctx, 'welcome', {
         title: '首页',
         staticTag: 'welcome'
     });
@@ -23,7 +24,7 @@ router.get('/', (ctx, next) => {
 router.get('/github', async(ctx, next) => {
     let gitData = await getIndexInfo();
 
-    successToPage(ctx, 'about', Object.assign({
+    successToView(ctx, 'about', Object.assign({
         title: 'github展示',
         staticTag: 'index'
     }, gitData));
@@ -34,7 +35,7 @@ router.get('/github', async(ctx, next) => {
  * 404
  */
 router.get('/404', (ctx, next) => {
-    successToPage(ctx, '404', Object.assign({
+    successToView(ctx, '404', Object.assign({
         title: 'github展示',
         staticTag: 'index'
     }, gitData));
@@ -42,7 +43,7 @@ router.get('/404', (ctx, next) => {
 
 
 router.get('/another/:test', (ctx, next) => {
-    successToPage(ctx, 'another', {
+    successToView(ctx, 'another', {
         title: '另一个接口',
         staticTag: 'another',
         data: ctx.params.test

@@ -4,22 +4,24 @@
  */
 
 import Client from '../Client';
+
 class GithubTest extends Client {
     constructor() {
         super();
+
         this.host = 'https://api.github.com'
 
         this.actions = {
-            iefe: '/orgs/iwfe'
+            iwfe: '/orgs/iwfe'
         }
     }
 }
+
 let TestInstance = new GithubTest();
 
 export async function getIndexInfo() {
-    global.throw('405 page', 400)
     return await TestInstance.fetch({
-        url: 'iefe'
+        url: 'iwfe'
     }).then(function(data) {
         return data;
     }, function(error) {

@@ -4,24 +4,32 @@
  * @Last Modified by:   enzo
  * @Last Modified time: 2016-11-11 16:31:09
  */
+import { successToJson } from '../response';
+
+const resourceName = 'product';
+const describe = '产品分类';
+const actions = [{
+        title: 'get detail v1',
+        url: '/:id',
+        version: 'v1',
+        action: async function(ctx, next) {
+            successToJson(ctx, {
+                test: 1
+            })
+        }
+    },
+
+    {
+        title: 'get detail v2',
+        doc: '',
+        method: 'get',
+        version: 'v2',
+        url: '/:id',
+        action: async function(ctx, next) {
+
+        }
+    }
+]
 
 
-// module.exports = {
-//     '/': async function(ctx, next) {
-//         await ctx.render('index', {
-//             title: 'koa-rudy'
-//         });
-//     },
-
-//     'get:/:id': function(ctx, next) {
-//         ctx.body = ctx.params.id;
-//     },
-
-//     'del:/:id': function(ctx, next) {
-
-//     },
-
-//     'post:/:id': function(ctx, next) {
-
-//     }
-// }
+export { actions, resourceName, describe };
