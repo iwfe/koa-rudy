@@ -8,14 +8,14 @@
 const winston = require('winston');
 const path = require('path');
 
-winston.add(winston.transports.File, {
-    filename: ''
-});
+// winston.add(winston.transports.File, {
+//     filename: ''
+// });
 
 /**
  * 错误处理
  */
-const error = function(setting) {
+module.exports = function(setting) {
     let { path, status } = setting;
 
     return function(ctx, next) {
