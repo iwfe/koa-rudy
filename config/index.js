@@ -1,15 +1,14 @@
-
 /*
-* @Author: enzo
-* @Date:   2016-11-08 11:39:58
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-12-28 17:38:25
-*/
+ * @Author: enzo
+ * @Date:   2016-11-08 11:39:58
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-12-28 17:38:25
+ */
 const baseConfig = {
 
     // 应用端口
     port: 3000,
-    
+
     // 测试端口
     testPort: 3001,
 
@@ -23,9 +22,9 @@ const baseConfig = {
 
 module.exports = function config(env) {
 
-    env = env || 'dev';
+    env = env || 'develop';
 
-    let configFile = require('./'+env + '.js');
+    let configFile = require('./' + env + 'config.js');
 
     return Object.assign(baseConfig, configFile);
 };

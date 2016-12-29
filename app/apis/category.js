@@ -5,16 +5,14 @@
  * @Last Modified time: 2016-11-11 16:31:09
  */
 
-module.exports = [
-
-    {
+const resourceName = 'category'
+const describe = '产品分类'
+const actions = [{
         title: 'get detail v1',
         url: '/:id',
         version: 'v1',
         action: async function(ctx, next) {
-            await ctx.render('index', {
-                title: 'koa-rudy'
-            });
+
         }
     },
 
@@ -25,10 +23,16 @@ module.exports = [
         version: 'v2',
         url: '/:id',
         action: async function(ctx, next) {
-            await ctx.render('index', {
-                title: 'koa-rudy'
-            });
+
         }
     }
-
 ]
+
+
+export { actions, resourceName, describe };
+
+// module.exports = {
+//     resourceName: 'category',
+//     describe: '产品分类',
+//     actions:
+// }

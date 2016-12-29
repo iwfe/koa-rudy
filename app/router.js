@@ -7,28 +7,26 @@
 
 const router = require('koa-router')();
 
-
 /**
  * index
  */
 router.get('/', (ctx, next) => {
     successToPage(ctx, 'welcome', {
         title: '首页',
-        staticTag:'welcome'
+        staticTag: 'welcome'
     });
 })
-
 
 /**
  * about
  */
 router.get('/github', (ctx, next) => {
-    let gitData = await getIndexInfo();      
+    let gitData = await getIndexInfo();
 
-    successToPage(ctx, 'index/index', Object.assign({
+    successToPage(ctx, 'about', Object.assign({
         title: 'github展示',
-        staticTag:'index'
-    },gitData));
+        staticTag: 'index'
+    }, gitData));
 })
 
 
@@ -36,17 +34,18 @@ router.get('/github', (ctx, next) => {
  * 404
  */
 router.get('/404', (ctx, next) => {
-    ctx.render('404', {
-        title: 'koa-rudy'
-    });
+    successToPage(ctx, '404', Object.assign({
+        title: 'github展示',
+        staticTag: 'index'
+    }, gitData));
 })
 
 
 router.get('/another/:test', (ctx, next) => {
     successToPage(ctx, 'another', {
         title: '另一个接口',
-        staticTag:'another',
-        data:ctx.params.test
+        staticTag: 'another',
+        data: ctx.params.test
     });
 })
 

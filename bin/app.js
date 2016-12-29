@@ -1,16 +1,16 @@
 /*
-* @Author: enzo
-* @Date:   2016-11-08 11:40:08
-* @Last Modified by:   enzo
-* @Last Modified time: 2016-12-28 19:56:09
-* 整个项目的展开都围绕着中间件
-*/
+ * @Author: enzo
+ * @Date:   2016-11-08 11:40:08
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2016-12-28 19:56:09
+ * 整个项目的展开都围绕着中间件
+ */
 
 const debug = require('debug')('rudy:app');
 const koa = require('koa');
 const middleware = require('../middleware');
 const path = require('path');
-const pages = require('../app/router/pages.js');
+const router = require('../app/router.js');
 
 const app = new koa();
 
@@ -38,12 +38,12 @@ app.use(middleware.assstatic('.'));
  * @type {[type]}
  */
 app.use(middleware.view({
-  root:path.join(__dirname, '../app/views')
+    root: path.join(__dirname, '../app/views')
 }));
 
 
 // 页面
-app.use(pages.routes());
+app.use(router.routes());
 
 /**
  * 数据资源路由
@@ -55,7 +55,7 @@ app.use(pages.routes());
 app.use(middleware.resources({
     root: 'api',
     website: global._rudyConfig.website,
-    path: path.join(__dirname, '../app/resources')
+    path: path.join(__dirname, '../app/apis')
 }));
 
 
