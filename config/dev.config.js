@@ -10,9 +10,9 @@ module.exports = {
      * 静态资源配置
      */
     staticConfigs: {
-        staticResourceConfigURL: 'http://',
-        staticResourceURL: 'http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/iwjw-pc/staticResource.properties'
+        staticResourceConfigURL: 'http://127.0.0.1',
+        staticResourceURL: 'http://127.0.0.1'
     },
 
     "WEBSITE": "http://127.0.0.1:3000"
-}
+};

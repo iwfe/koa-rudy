@@ -14,7 +14,7 @@ let {
  */
 let MethodNameSpace = {
     getURL : (tagName)=>{
-        return process.env['NODE_ENV']=='dev'?'':staticResourceURL + '/' + tagName;
+        return staticResourceURL + '/' + tagName;
     }
 };
 /**

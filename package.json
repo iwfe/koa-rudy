@@ -5,8 +5,8 @@
     "main": "server.js",
     "scripts": {
         "test": "NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./server.js",
-        "dev": "NODE_ENV=develop ./node_modules/.bin/nodemon --use_strict ./server.js",
-        "prod": "NODE_ENV=production ./node_modules/.bin/nodemon --use_strict ./server.js",
+        "dev": "NODE_ENV=dev ./node_modules/.bin/nodemon --use_strict ./server.js",
+        "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
         "mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha ./test/test.js"
     },
     "repository": {

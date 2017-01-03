@@ -23,7 +23,7 @@ global._throw = function(msg = '这一个默认的错误msg', status = 500) {
     err.status = status;
 
     throw err;
-}
+};
 
 const app = require('./bin/app');
 const server = require('http').createServer(app.callback());
