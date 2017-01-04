@@ -21,8 +21,7 @@ const app = new koa();
  */
 
 app.use(middleware.log({
-    path: path.join(__dirname, '../logs/all-log.log'),
-    statusConf: global._appConfig.status
+    path: path.join(__dirname, '../logs/all-log.log')
 }));
 
 /**

@@ -9,15 +9,31 @@ const winston = require('winston');
 const path = require('path');
 const env = process.env['NODE_ENV'];
 
+global.error = function(msg = '这一个默认的错误msg', status = 500) {
+    let err = new Error(msg);
+    err.status = status;
+
+    throw err;
+}
+
+global.log = function(msg) {
+    msg = new Date() + msg;
+
+    if (env == 'develop') {
+        console.log(msg);
+    }
+    winston.info(msg)
+}
+
 /**
  * 错误处理
  */
 module.exports = function(setting) {
 
-    let { path, statusConf } = setting;
+    let { path } = setting;
 
     if (!path) {
-        throw new Error(`log path config is null`);
+        throw new Error(`log path config is empty`);
     }
 
     winston.add(winston.transports.File, {
@@ -28,19 +44,12 @@ module.exports = function(setting) {
         return next()
             .then()
             .catch(err => {
-                if (env == 'develop') {
-                    console.log(err);
-                }
-
                 const { status } = err;
 
-                if (status) {
-                    let lv = statusConf[status] || 'error';
-                    winston[lv](err.name + '\n' + err.message + '\n' + err.stack);
-                    return next()
-                } else {
-                    //系统错误
-                    winston.error(err.name + '\n' + err.message + '\n' + err.stack);
+                winston.error(new Date() + err.name + '\n' + err.message + '\n' + err.stack);
+
+                // 将错误返回客户端
+                if (!status || (status && status == 500)) {
                     ctx.body = err.stack;
                     ctx.status = 500;
                 };
