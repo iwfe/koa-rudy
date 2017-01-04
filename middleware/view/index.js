@@ -23,12 +23,22 @@ var defaultSettings = {
 
 // TUDO 可以渲染代码片段
 module.exports = function view(settings) {
+    let urlRouter;
+
     if (!settings || !settings.root) {
         throw new Error('settings.root required');
     }
+
     settings.root = path.resolve(process.cwd(), settings.root);
 
+    try {
+        urlRouter = require(`${settings.root}/urlrewrite.js`);
+    } catch (error) {
+
+    }
+
     copy(defaultSettings).to(settings);
+
     //用于IO数据缓存
     let fileCache = {};
 
@@ -59,9 +69,11 @@ module.exports = function view(settings) {
     }
 
     return async function view(ctx, next) {
+
         if (ctx.render) {
             return await next();
         }
+
         Object.assign(ctx, {
             render: async function(view, _context) {
                 var context = {};
@@ -71,6 +83,7 @@ module.exports = function view(settings) {
                 ctx.body = html;
             }
         });
+
         await next();
     }
 };

@@ -7,38 +7,39 @@
 
 const winston = require('winston');
 const path = require('path');
-
-// winston.add(winston.transports.File, {
-//     filename: ''
-// });
+const env = process.env['NODE_ENV'];
 
 /**
  * 错误处理
  */
 module.exports = function(setting) {
-    let { path, status } = setting;
+
+    let { path, statusConf } = setting;
+
+    if (!path) {
+        throw new Error(`log path config is null`);
+    }
+
+    winston.add(winston.transports.File, {
+        filename: path
+    });
 
     return function(ctx, next) {
-        //将exception处理挂在global对象上
-        global.throw = ctx.throw;
         return next()
-            .then(() => {
-                const status = ctx.status;
-                if (status === 404) {
-                    winston.warn('request Path is ', ctx.url, '404 page redirect');
-                }
-            })
+            .then()
             .catch(err => {
-                console.log(err);
-                // 处理400、500等未捕获的错误
-                let { status } = err;
-                if (status === 404) {
-                    winston.warn('request Path is ', ctx.url, '404 page redirect');
-                    // global.logger.warn('request Path is ',ctx.url,'404 page redirect => path "/"');
-                    // ctx.status = 404;
-                    // ctx.redirect('/');
+                if (env == 'develop') {
+                    console.log(err);
+                }
+
+                const { status } = err;
+
+                if (status) {
+                    let lv = statusConf[status] || 'error';
+                    winston[lv](err.name + '\n' + err.message + '\n' + err.stack);
+                    return next()
                 } else {
-                    //未知错误
+                    //系统错误
                     winston.error(err.name + '\n' + err.message + '\n' + err.stack);
                     ctx.body = err.stack;
                     ctx.status = 500;

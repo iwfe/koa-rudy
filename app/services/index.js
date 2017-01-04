@@ -3,7 +3,7 @@
  * 首页提供的服务
  */
 
-import Client from '../Client';
+import Client from '../request';
 
 class GithubTest extends Client {
     constructor() {
@@ -12,7 +12,8 @@ class GithubTest extends Client {
         this.host = 'https://api.github.com'
 
         this.actions = {
-            iwfe: '/orgs/iwfe'
+            iwfe: '/orgs/iwfe',
+            test: '/test'
         }
     }
 }

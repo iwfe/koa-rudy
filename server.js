@@ -10,7 +10,7 @@ const debug = require('debug')('rudy:server');
 // 获取配置文件
 const config = require('./config/index.js')(process.env['NODE_ENV']);
 
-// 挂载全局
+// 挂载全局配置
 global._appConfig = config;
 
 // 抛出日志
