@@ -22,7 +22,7 @@ const baseConfig = {
 
 module.exports = function config(env) {
 
-    env = env || 'develop';
+    env = env || 'dev';
 
     let configFile = require('./' + env + '.config.js');
 
