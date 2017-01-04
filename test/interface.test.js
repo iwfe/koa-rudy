@@ -10,17 +10,16 @@ const mocha = require('mocha');
 const expect = require('chai').expect;
 const axios = require('axios');
 const copy = require('copy-to');
-const querystring = require('querystring');
 
-let baseUrl = "http://localhost:3001/api/alicai/";
+let baseUrl = "http://localhost:3001/api/";
 
 async function commonFetch(params) {
     return axios(params);
 }
 
 describe('demo', function() {
-    it('github', function() {
-        return commonFetch({ url: baseUrl + 'fcblist', params: p2pData }).then(function(data) {
+    it('category v1 test', function() {
+        return commonFetch({ url: baseUrl + 'v1/category/:id' }).then(function(data) {
             return data;
         }).then(function(resp) {
             expect(resp).to.not.be.empty;

@@ -12,15 +12,6 @@ import copy from "copy-to";
 import _ from "lodash";
 import dateUtils from "date-utils";
 
-/**
- * 抛出错误日志
- */
-exports.throw = function(msg = '这一个默认的错误msg', status = 500) {
-    let err = new Error(msg);
-    err.status = status;
-
-    throw err;
-}
 
 /**
  * 日期格式化

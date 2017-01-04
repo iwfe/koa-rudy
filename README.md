@@ -19,9 +19,9 @@
 |- config 配置文件  
 |  
 |- app 路由和视图  
-|- |- controller 程序逻辑分发层  
-|- |- service 网络服务层  
-|- |- views 视图层  
+|- |- apis 客户端 api  
+|- |- service 主业务  
+|- |- views 视图
 |  
 |- middleware 中间件  
 |- |- body 程序逻辑分发层  
@@ -35,8 +35,6 @@
 |- utils  工具库  
 |  
 |- test 单元测试  
-|  
-|- document API文档  
 |  
 |- logs 日志  
 
