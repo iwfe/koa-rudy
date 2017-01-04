@@ -2,61 +2,15 @@
 <html>
 
 <head>
-  <title><%- locals.title %></title>
-  <link rel="icon" href="/demo/static/image/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href='<%- MethodNameSpace.getURL("common.css")%>'>
-  <link rel="stylesheet" href='<%- MethodNameSpace.getURL(staticTag + ".css") %>'>
-  <style type="text/css">
-        body {
-            text-align: center;
-            font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        .index {
-            width: 500px;
-            margin: auto;
-            margin-top: 100px;
-            color: #34495e;
-        }
-
-        .index>p {
-            color: #7f8c8d;
-        }
-
-        .index>h1 {
-            font-weight: 500;
-            font-size: 4em;
-            margin: 0;
-        }
-
-        .index>ul {
-            list-style: none;
-            text-align: center;
-            line-height: 30px;
-            margin: 0;
-            margin-top: 50px;
-            padding: 0;
-        }
-
-        @-webkit-keyframes rudyam {
-            0% {transform: rotate(0deg)}
-            25% {transform: rotate(-90deg)}
-            50% {transform: rotate(-180deg)}
-            75% {transform: rotate(-270deg)}
-            100% {transform: rotate(-360deg)}
-        }
-
-        .rudylogo {
-            animation: rudyam 4s infinite;
-        }
-
-  </style>
-
+    <title>
+        <%- locals.title %>
+    </title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link href="./index.css" rel='stylesheet'>
 </head>
 
 <body>
     <%- include(templateName) %>
-    <script src='<%- MethodNameSpace.getURL("common.js")%>'></script>
-    <script src='<%- MethodNameSpace.getURL(staticTag+".js")%>'></script>
 </body>
+
 </html>

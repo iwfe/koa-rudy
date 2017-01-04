@@ -1,0 +1,52 @@
+body {
+    text-align: center;
+    font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.index {
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    color: #34495e;
+}
+
+.index>p {
+    color: #7f8c8d;
+}
+
+.index>h1 {
+    font-weight: 500;
+    font-size: 4em;
+    margin: 0;
+}
+
+.index>ul {
+    list-style: none;
+    text-align: center;
+    line-height: 30px;
+    margin: 0;
+    margin-top: 50px;
+    padding: 0;
+}
+
+@-webkit-keyframes rudyam {
+    0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(-90deg)
+    }
+    50% {
+        transform: rotate(-180deg)
+    }
+    75% {
+        transform: rotate(-270deg)
+    }
+    100% {
+        transform: rotate(-360deg)
+    }
+}
+
+.rudylogo {
+    animation: rudyam 4s infinite;
+}
