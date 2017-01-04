@@ -19,7 +19,7 @@ global.error = function(msg = '这一个默认的错误msg', status = 500) {
 global.log = function(msg) {
     msg = new Date() + msg;
 
-    if (env == 'develop') {
+    if (env == 'dev') {
         console.log(msg);
     }
     winston.info(msg)
