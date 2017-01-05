@@ -1,4 +1,4 @@
-# node-rent-platform
+# koa-rudy
 
 ## 环境
 
