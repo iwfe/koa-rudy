@@ -1,16 +1,27 @@
 # node-rent-platform
 
-## 开发环境
+## 环境
 
 > node -v >=6.9.0
+> pm2 
 
-## 功能
-1. 完备的后端模板渲染
-2. 路由模块
-3. 404、500错误处理
-4. service、controller分层
-5. 适配不同的开发环境 => dev,test,prod
-6. 不同环境的动态错误日志生成
+## 启动
+
+```bash
+    npm install
+    npm run dev
+```
+
+## 实现
+1. 支持 async/await
+2. MVC架构（middleware-view-controller）
+3. RESTful api 接口设计
+4. 对接SOA服务
+5. 支持 Docker 构建发布
+6. 接口数据防爬虫
+7. 同构开发
+8. 日志系统
+9. 适配不同环境 => dev,test,prod
 
 
 ## 目录介绍
@@ -20,15 +31,10 @@
 |  
 |- app 路由和视图  
 |- |- apis 客户端 api  
-|- |- service 主业务  
+|- |- service 对接soa实现主业务  
 |- |- views 视图
 |  
 |- middleware 中间件  
-|- |- body 程序逻辑分发层  
-|- |- log 日志系统
-|- |- router 视图层  
-|- |- static 静态资源层  
-|- |- router 路由层  
 |  
 |- assets 静态资源 图片/font等   
 |  
@@ -39,10 +45,10 @@
 |- logs 日志  
 
 ## 技术模块及文档地址
-1. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
-2. [Promise网络请求axios](https://github.com/mzabriskie/axios)
-3. [ejs模板渲染](https://github.com/mde/ejs)
-4. [工具相关lodash](https://github.com/lodash/lodash)
+1. [koa 文档](https://github.com/guo-yu/koa-guide)
+2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
+3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
+4. [ejs模板渲染](https://github.com/mde/ejs)
 
     1. [lodash文档](https://lodash.com/docs/4.17.2)
     2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
@@ -55,7 +61,7 @@
 
 ## 常用命令
 
-### 三套环境
+### 三套开发环境，开发，测试，预发
 
 ```bash
     npm run dev || test || prod
@@ -65,17 +71,6 @@
 
 ```bash
     npm run mocha
-```
-
-### 生成API文档
-
-```bash
-    npm run doc
-```
-### 查看API文档
-
-```bash
-    npm run pwapi
 ```
 
 ## 部署

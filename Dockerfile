@@ -25,4 +25,4 @@ COPY . $HOME/ailicai
 RUN chown -R app:app $HOME/*
 USER app
 
-CMD pm2-docker bin/server.js
+CMD NODE_ENV=prod pm2-docker bin/server.js
