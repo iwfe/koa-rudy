@@ -80,10 +80,6 @@
 ## 部署
 
 ```bash
-    cp -rf /root/jenkins/workspace/rudy  /root/app
-    babel /root/app/rudy -d /root/app/rudy 
-    cd /root/app/rudy
-    rm -rf .babelrc
     sh deploy.sh
 ```
 
