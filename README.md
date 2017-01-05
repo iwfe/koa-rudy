@@ -12,6 +12,18 @@
     npm run dev
 ```
 
+## 开发环境
+
+```bash
+    npm run dev || test || prod
+```
+
+## 接口测试
+
+```bash
+    npm run mocha
+```
+
 ## 推荐开发工具
 [vscode](https://code.visualstudio.com/)
 
@@ -24,7 +36,6 @@
 6. 接口测试
 7. 日志文件系统
 8. 适配不同开发环境 => dev,test,prod
-
 
 ## 目录介绍
 |- bin 程序入口  
@@ -54,35 +65,17 @@
 4. static
 5. view 
 
-## 技术模块及文档地址
-
-1. [koa 文档](https://github.com/guo-yu/koa-guide)
-2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
-3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
-4. [ejs模板渲染](https://github.com/mde/ejs)
-    1. [lodash文档](https://lodash.com/docs/4.17.2)
-    2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
-    
-
 ## 业务分层
 
 > API 收集处理客户端请求数据，将处理好的数据发给service.         
 > SERVICE 主业务层，根据业务逻辑分块，去不同的soa请求数据进行封装反馈给API.      
 > SOA 每个SOA单独模块封装，以HTTP协议请求数据，不做数据封装.     
 
-## 常用命令
+## Jenkins
+    使用 Jenkins docker image 
 
-### 三套开发环境，开发，测试，预发
-
-```bash
-    npm run dev || test || prod
-```
-
-### 单元测试
-
-```bash
-    npm run mocha
-```
+## docker
+[dockerFile](https://github.com/iwfe/koa-rudy/blob/master/Dockerfile)
 
 ## 部署
 
@@ -94,3 +87,12 @@
     sh deploy.sh
 ```
 
+## 技术模块及文档地址
+
+1. [koa 文档](https://github.com/guo-yu/koa-guide)
+2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
+3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
+4. [ejs模板渲染](https://github.com/mde/ejs)
+    1. [lodash文档](https://lodash.com/docs/4.17.2)
+    2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
+    
