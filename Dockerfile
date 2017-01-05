@@ -8,11 +8,11 @@ RUN useradd --user-group --create-home --shell /bin/false app &&\
 ENV HOME=/home/app
 ENV NODE_ENV=production
 
-COPY package.json $HOME/ailicai/
+COPY package.json $HOME/rudy/
 RUN chown -R app:app $HOME/*
 
 USER app
-WORKDIR $HOME/ailicai
+WORKDIR $HOME/rudy
 RUN npm config set registry https://registry.npm.taobao.org &&\
   npm config list &&\
   npm install
@@ -21,7 +21,7 @@ RUN npm config set registry https://registry.npm.taobao.org &&\
 #   yarn instal
 
 USER root
-COPY . $HOME/ailicai
+COPY . $HOME/rudy
 RUN chown -R app:app $HOME/*
 USER app
 

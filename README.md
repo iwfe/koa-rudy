@@ -12,10 +12,8 @@
     npm run dev
 ```
 
-## 开发工具
-
-    支持DEBUG
-    [vscode](https://code.visualstudio.com/)
+## 推荐开发工具
+[vscode](https://code.visualstudio.com/)
 
 ## 实现
 1. 支持 async/await
@@ -62,7 +60,6 @@
 2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
 3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
 4. [ejs模板渲染](https://github.com/mde/ejs)
-
     1. [lodash文档](https://lodash.com/docs/4.17.2)
     2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
     
@@ -90,32 +87,4 @@
 ## 部署
 
 dockerFile + Jenkins
-
-## 技术提示
-```js
-    koa 代理列表
-    /**
- * Response delegation.
- */
-delegate(proto, 
- 'response'------ level------ 
- ['attachment','redirect','remove' 
- 'vary','set' ,'append','flushHeaders' ,'status' 
- 'message' ,'body' ,'length' ,'type' ,'lastModified' 
- 'etag', 'headerSent','writable' ];
-
-/**
- * Request delegation.
- */
-delegate(proto, 
- 'request' ------ level------ 
- ['acceptsLanguages' , 'acceptsEncodings' ,'acceptsCharsets',
- 'accepts' , 'get' , 'is', 
- 'querystring' ,'idempotent' ,'socket' ,
- 'search' , 'method'  ,'query' , 'path' ,
- 'url' , 'origin' ,'href' , 'subdomains' ,
- 'protocol' ,'host','hostname' ,'header' ,
- 'headers','secure' ,'stale' ,'fresh' ,'ips' 'ip']
-
-```
 
