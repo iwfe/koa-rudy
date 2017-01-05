@@ -48,6 +48,14 @@
 |  
 |- logs 日志  
 
+## middleware
+
+1. api 
+2. body 
+3. log 
+4. static
+5. view 
+
 ## 技术模块及文档地址
 
 1. [koa 文档](https://github.com/guo-yu/koa-guide)
