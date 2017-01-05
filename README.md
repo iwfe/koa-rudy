@@ -34,7 +34,7 @@
 |- app 路由和视图  
 |- |- apis 客户端 api  
 |- |- service 对接soa实现主业务  
-|- |- views 视图
+|- |- views 视图       
 |  
 |- middleware 中间件  
 |  
