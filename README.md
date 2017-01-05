@@ -12,16 +12,20 @@
     npm run dev
 ```
 
+## 开发工具
+
+    支持DEBUG
+    [vscode](https://code.visualstudio.com/)
+
 ## 实现
 1. 支持 async/await
 2. MVC架构（middleware-view-controller）
 3. RESTful api 接口设计
-4. 对接SOA服务
+4. 支持对接SOA服务
 5. 支持 Docker 构建发布
-6. 接口数据防爬虫
-7. 同构开发
-8. 日志系统
-9. 适配不同环境 => dev,test,prod
+6. 接口测试
+7. 日志文件系统
+8. 适配不同开发环境 => dev,test,prod
 
 
 ## 目录介绍
@@ -40,11 +44,12 @@
 |  
 |- utils  工具库  
 |  
-|- test 单元测试  
+|- test 测试  
 |  
 |- logs 日志  
 
 ## 技术模块及文档地址
+
 1. [koa 文档](https://github.com/guo-yu/koa-guide)
 2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
 3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
@@ -53,6 +58,7 @@
     1. [lodash文档](https://lodash.com/docs/4.17.2)
     2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
     
+
 ## 业务分层
 
 > API 收集处理客户端请求数据，将处理好的数据发给service
