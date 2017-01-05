@@ -66,9 +66,9 @@
 
 ## 业务分层
 
-> API 收集处理客户端请求数据，将处理好的数据发给service
-> SERVICE 主业务层，根据业务逻辑分块，去不同的soa请求数据进行封装反馈给API。
-> SOA 每个SOA单独模块封装，以HTTP协议请求数据，不做数据封装
+> API 收集处理客户端请求数据，将处理好的数据发给service.         
+> SERVICE 主业务层，根据业务逻辑分块，去不同的soa请求数据进行封装反馈给API.      
+> SOA 每个SOA单独模块封装，以HTTP协议请求数据，不做数据封装.     
 
 ## 常用命令
 
@@ -86,5 +86,11 @@
 
 ## 部署
 
-dockerFile + Jenkins
+```bash
+    cp -rf /root/jenkins/workspace/rudy  /root/app
+    babel /root/app/rudy -d /root/app/rudy 
+    cd /root/app/rudy
+    rm -rf .babelrc
+    sh deploy.sh
+```
 
