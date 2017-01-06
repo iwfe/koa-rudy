@@ -3,7 +3,10 @@
  * 主程序入口
  * 16.12.23
  */
-require("babel-register");
+
+if (process.env.NODE_ENV == 'dev') {
+    require("babel-register");
+}
 
 const debug = require('debug')('rudy:server');
 
