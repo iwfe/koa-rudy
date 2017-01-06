@@ -7,52 +7,60 @@
 
 const winston = require('winston');
 const path = require('path');
-const env = process.env['NODE_ENV'];
+const fs = require('fs');
+const dateUtils = require("date-utils").language("es");
 
-global.error = function(msg = '这一个默认的错误msg', status = 500) {
+const heartbeat = 1000 * 60;
+const timeReg = 'YYYY-MM-DD';
+var logTime = Date.now();
+
+const error = function(msg = '这一个默认的错误msg', status = 500) {
     let err = new Error(msg);
     err.status = status;
 
     throw err;
 }
 
-global.log = function(msg) {
+const info = function(msg) {
     msg = new Date() + msg;
-
-    if (env == 'dev') {
-        console.log(msg);
-    }
+    console.log(msg);
     winston.info(msg)
 }
 
-/**
- * 错误处理
- */
-module.exports = function(setting) {
+const logger = function(setting) {
 
     let { path } = setting;
 
     if (!path) {
-        throw new Error(`log path config is empty`);
+        throw new Error(`log path is empty`);
     }
 
     winston.add(winston.transports.File, {
         filename: path
     });
 
+    // 每隔一天生成历史日志
+    setInterval(() => {
+        let today = new Date().toFormat(timeReg);
+        let last = new Date(logTime).toFormat(timeReg);
+
+        if (new Date(today).getTime() > new Date(last).getTime()) {
+            let rename = path.replace('.log', `.${today}.log`);
+            fs.rename(path, rename, () => {
+                fs.writeFile(path, 'UTF-8');
+                logTime = Date.now();
+            });
+        }
+
+    }, heartbeat)
+
+
     return function(ctx, next) {
         return next()
-            .then()
-            .catch(err => {
-                const { status } = err;
-
+            .then(err => {
                 winston.error(new Date() + err.name + '\n' + err.message + '\n' + err.stack);
-
-                // 将错误返回客户端
-                if (!status || (status && status == 500)) {
-                    ctx.body = err.stack;
-                    ctx.status = 500;
-                };
             })
     }
 }
+
+export { logger, info, error }

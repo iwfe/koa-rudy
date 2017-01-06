@@ -12,6 +12,7 @@ const actions = [{
         title: 'get detail v1',
         url: '/:id',
         version: 'v1',
+
         action: async function(ctx, next) {
             successToJson(ctx, {
                 test: 1

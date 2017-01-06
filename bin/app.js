@@ -15,13 +15,15 @@ const path = require('path');
 
 const app = new koa();
 
+// 风险验证
 /**
  * logger
  *
  */
 
+
 app.use(middleware.log({
-    path: path.join(__dirname, '../logs/all-log.log')
+    path: path.join(__dirname, '../logs/server.log')
 }));
 
 /**
