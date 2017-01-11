@@ -17,8 +17,10 @@ const app = new koa();
 
 /**
  * log 相关
+ * logger log中间件
+ * info   log.info
+ * error  log.error
  */
-
 const { logger, info, error } = middleware.log;
 
 global.log_info = info;
@@ -64,13 +66,13 @@ app.use(middleware.api({
     path: path.join(__dirname, '../app/apis')
 }));
 
-app.use((ctx, next) => {
-        global.log_info('12121212');
-    })
-    /**
-     * 处理数据
-     */
+
 app.use(middleware.body());
+
+// 错误处理
+app.on('error', function(err) {
+    global.log_error(err);
+});
 
 
 module.exports = app;

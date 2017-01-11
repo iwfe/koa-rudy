@@ -17,9 +17,27 @@ async function commonFetch(params) {
     return axios(params);
 }
 
-describe('demo', function() {
-    it('category v1 test', function() {
-        return commonFetch({ url: baseUrl + 'v1/category/:id' }).then(function(data) {
+describe('koa-rudy test demo', function() {
+    it('subject v1 test', function() {
+        return commonFetch({ url: baseUrl + 'v1/subject/:id' }).then(function(data) {
+            return data;
+        }).then(function(resp) {
+            expect(resp).to.not.be.empty;
+            expect(resp.status).to.equal(200);
+        });
+    });
+
+    it('subject v2 test', function() {
+        return commonFetch({ url: baseUrl + 'v2/subject/:id' }).then(function(data) {
+            return data;
+        }).then(function(resp) {
+            expect(resp).to.not.be.empty;
+            expect(resp.status).to.equal(200);
+        });
+    });
+
+    it('tag list', function() {
+        return commonFetch({ url: baseUrl + 'tag' }).then(function(data) {
             return data;
         }).then(function(resp) {
             expect(resp).to.not.be.empty;

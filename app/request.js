@@ -19,7 +19,7 @@ const requestInstance = axios.create({
 requestInstance.interceptors.response.use(function(response) {
     return response;
 }, function(error) {
-    global.throw('网络出错', 500);
+    global.log_error('网络出错 ' + error);
     return Promise.reject(error);
 });
 
@@ -40,7 +40,6 @@ export default class Client {
      * @return Promise
      */
     request(param = {}) {
-        console.log(param)
         return requestInstance(param);
     }
 
@@ -85,7 +84,7 @@ export default class Client {
                 return response.data;
             })
             .catch(function(error) {
-                global.throw('SOA请求出错', 500);
+                global.log_error('SOA请求出错 ' + error);
             });
     }
 }
