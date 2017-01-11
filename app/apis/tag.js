@@ -6,30 +6,18 @@
  */
 import { successToJson } from '../response';
 
-const resourceName = 'category';
+const resourceName = 'tag';
 const describe = '分类';
 const actions = [{
-        title: 'get detail v1',
-        url: '/:id',
-        version: 'v1',
-        action: async function(ctx, next) {
-            successToJson(ctx, {
-                test: 1
-            })
-        }
-    },
-
-    {
-        title: 'get detail v2',
-        doc: '',
-        method: 'get',
-        version: 'v2',
-        url: '/:id',
-        action: async function(ctx, next) {
-
-        }
+    title: 'get detail v1',
+    url: '/:id',
+    version: 'v1',
+    action: async function(ctx, next) {
+        successToJson(ctx, {
+            test: 1
+        })
     }
-]
+}]
 
 
 export { actions, resourceName, describe };
