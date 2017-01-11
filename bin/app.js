@@ -15,14 +15,16 @@ const path = require('path');
 
 const app = new koa();
 
-// 风险验证
 /**
- * logger
- *
+ * log 相关
  */
 
+const { logger, info, error } = middleware.log;
 
-app.use(middleware.log({
+global.log_info = info;
+global.log_error = error;
+
+app.use(logger({
     path: path.join(__dirname, '../logs/server.log')
 }));
 
@@ -62,10 +64,12 @@ app.use(middleware.api({
     path: path.join(__dirname, '../app/apis')
 }));
 
-
-/**
- * 处理数据
- */
+app.use((ctx, next) => {
+        global.log_info('12121212');
+    })
+    /**
+     * 处理数据
+     */
 app.use(middleware.body());
 
 

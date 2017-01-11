@@ -22,7 +22,6 @@ const error = function(msg = '这一个默认的错误msg', status = 500) {
 }
 
 const info = function(msg) {
-    msg = new Date() + msg;
     console.log(msg);
     winston.info(msg)
 }
@@ -39,13 +38,14 @@ const logger = function(setting) {
         filename: path
     });
 
-    // 每隔一天生成历史日志
+    // 一分钟轮询一次
+    // 每天生成历史日志文件
     setInterval(() => {
         let today = new Date().toFormat(timeReg);
         let last = new Date(logTime).toFormat(timeReg);
 
         if (new Date(today).getTime() > new Date(last).getTime()) {
-            let rename = path.replace('.log', `.${today}.log`);
+            let rename = path.replace('.log', `.${last}.log`);
             fs.rename(path, rename, () => {
                 fs.writeFile(path, 'UTF-8');
                 logTime = Date.now();
@@ -57,8 +57,9 @@ const logger = function(setting) {
 
     return function(ctx, next) {
         return next()
-            .then(err => {
-                winston.error(new Date() + err.name + '\n' + err.message + '\n' + err.stack);
+            .then()
+            .catch(err => {
+                winston.error(err.name + '\n' + err.message + '\n' + err.stack);
             })
     }
 }

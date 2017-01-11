@@ -7,7 +7,7 @@
 import { successToJson } from '../response';
 
 const resourceName = 'user';
-const describe = '产品分类';
+const describe = '用户';
 const actions = [{
         title: 'get detail v1',
         url: '/:id',
