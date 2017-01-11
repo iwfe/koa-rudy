@@ -28,7 +28,7 @@ export async function getSubject(id) {
     }).then(function(data) {
         return data;
     }, function(error) {
-        global.log.error('getSubject error');
+        global.log_error('getSubject error');
     })
 
     return data;
@@ -40,7 +40,7 @@ export async function getTag(id) {
     }).then(function(data) {
         return data;
     }, function(error) {
-        global.log.error('getTag error');
+        global.log_error('getTag error');
     })
 
     return data;

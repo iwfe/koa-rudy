@@ -32,7 +32,11 @@ module.exports = function(setting) {
     // all resources
     let resourcesList = {};
     router.get(appRoot, (ctx, next) => {
-        ctx.body = JSON.stringify(resourcesList);
+        if (process.env.NODE_ENV != 'prod') {
+            ctx.body = JSON.stringify(resourcesList);
+        } else {
+            ctx.body = '用鼠标在页面上点一点有惊喜哦';
+        }
     })
 
     // resources parse

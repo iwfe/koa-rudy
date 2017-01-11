@@ -40,6 +40,7 @@ export default class Client {
      * @return Promise
      */
     request(param = {}) {
+        console.log(param)
         return requestInstance(param);
     }
 

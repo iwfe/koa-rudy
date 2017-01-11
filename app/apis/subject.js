@@ -4,7 +4,7 @@
  * @Last Modified by:   enzo
  * @Last Modified time: 2016-11-11 16:31:09
  */
-import { successToJson } from '../response';
+import { successToJson, errorToJson } from '../response';
 import { getSubject } from '../services/movie.js';
 
 const resourceName = 'subject';
@@ -14,16 +14,11 @@ const actions = [{
         url: '/:id',
         version: 'v1',
         action: async function(ctx, next) {
-            let { id } = ctx.request.query;
-
-            if (!id) {
-                return errorToJosn(ctx, '缺少必要字段');
-            }
-
+            let { id } = ctx.params;
             let data = await getSubject(id);
 
             if (data == null) {
-                return errorToJosn(ctx, '未找到该主题', 404);
+                return errorToJson(ctx, '未找到该主题', 404);
             } else {
                 return successToJson(ctx, data)
             }
