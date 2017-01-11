@@ -5,31 +5,24 @@
  * @Last Modified time: 2016-11-11 16:31:09
  */
 import { successToJson } from '../response';
+import { getTag } from '../services/movie.js';
 
-const resourceName = 'category';
+const resourceName = 'tag';
 const describe = '分类';
 const actions = [{
-        title: 'get detail v1',
-        url: '/:id',
-        version: 'v1',
-        action: async function(ctx, next) {
-            successToJson(ctx, {
-                test: 1
-            })
-        }
-    },
+    title: 'get tag',
+    url: '/',
+    action: async function(ctx, next) {
 
-    {
-        title: 'get detail v2',
-        doc: '',
-        method: 'get',
-        version: 'v2',
-        url: '/:id',
-        action: async function(ctx, next) {
+        let data = await getTag();
 
+        if (data == null) {
+            return errorToJosn(ctx, '没有tag');
+        } else {
+            return successToJson(ctx, data);
         }
     }
-]
+}]
 
 
 export { actions, resourceName, describe };

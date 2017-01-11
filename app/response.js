@@ -47,7 +47,7 @@ export function successToJson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
  * @return {[type]} param   [description]
  */
 
-export function errorToJson(ctx, param, status = 500, msg = ERRER_TEXT) {
+export function errorToJson(ctx, msg = ERRER_TEXT, param = null, status = 500) {
     let data = {
         data: param,
         status: status,

@@ -14,5 +14,9 @@ module.exports = {
         staticResourceURL: 'http://127.0.0.1'
     },
 
-    "WEBSITE": "http://127.0.0.1:3000"
+    "website": "http://127.0.0.1:3000",
+
+    "userSoa": "http://127.0.0.1",
+
+    "movieSoa": "http://127.0.0.1"
 };

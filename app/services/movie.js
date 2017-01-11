@@ -6,16 +6,16 @@
  */
 
 import request from "../request";
-import copy from "copy-to";
 
 class Subject extends request {
     constructor() {
         super();
 
-        this.host = global._appConfig.subjectSoa;
+        this.host = global._appConfig.movieSoa;
 
         this.actions = {
-            'list': 'subject.json'
+            'subject': 'subject.json',
+            'tag': 'tag.json'
         }
     }
 }
@@ -24,11 +24,23 @@ const subject = new Subject();
 
 export async function getSubject(id) {
     let data = await subject.fetch({
-        url: "list"
+        url: "subject"
     }).then(function(data) {
         return data;
     }, function(error) {
-        console.log('出错了', error);
+        global.log.error('getSubject error');
+    })
+
+    return data;
+}
+
+export async function getTag(id) {
+    let data = await subject.fetch({
+        url: "tag"
+    }).then(function(data) {
+        return data;
+    }, function(error) {
+        global.log.error('getTag error');
     })
 
     return data;
