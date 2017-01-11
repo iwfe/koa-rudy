@@ -45,15 +45,3 @@ export async function getTag(id) {
 
     return data;
 }
-
-export async function getTag(id) {
-    let data = await subject.fetch({
-        url: "list"
-    }).then(function(data) {
-        return data;
-    }, function(error) {
-        console.log('出错了', error);
-    })
-
-    return data;
-}
