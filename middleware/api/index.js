@@ -28,11 +28,10 @@ module.exports = function(setting) {
     if (!website) website = '//';
 
     let appRoot = root != '/' ? '/' + root + '/' : '';
-    let apidoc = '/apidoc/';
 
     // all resources
     let resourcesList = {};
-    router.get(apidoc, (ctx, next) => {
+    router.get(appRoot, (ctx, next) => {
         if (process.env.NODE_ENV != 'prod') {
             ctx.body = JSON.stringify(resourcesList);
         } else {
@@ -58,14 +57,14 @@ module.exports = function(setting) {
         }
 
         // reg router
-        router.get(`${apidoc}${resourceName}`, (ctx, next) => {
+        router.get(`${appRoot}${resourceName}`, (ctx, next) => {
             ctx.body = JSON.stringify(actionList);
         })
 
         // add resource
         resourcesList[`${resourceName}`] = {
             describe: describe || '未添加描述',
-            href: `${website}${apidoc}${resourceName}`
+            href: `${website}${appRoot}${resourceName}`
         };
 
         // parse action
