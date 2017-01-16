@@ -1,0 +1,14 @@
+<%- _html %>
+
+<% if (_json) { %>
+  <script type="text/javascript">
+      window.pageConfig = window.pageConfig || {};
+      try {
+        window.pageConfig.reactInitData = <%- _json %>;
+      }catch (e){
+        window.pageConfig.reactInitData = {};
+      }
+  </script>
+<% } %>
+
+<script type="text/javascript" src="/scripts/<%= staticTag %>.min.js"></script>
