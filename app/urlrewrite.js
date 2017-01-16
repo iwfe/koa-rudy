@@ -1,10 +1,11 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 11:40:08
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-12-28 19:59:04
+ * @Last Modified by:   zoucong
+ * @Last Modified time: 2017-01-16 18:50:17
  */
 import { successToView } from './response';
+import serverRender from './serverRender';
 
 const router = require('koa-router')();
 
@@ -28,8 +29,22 @@ router.get('/github', async(ctx, next) => {
         title: 'github展示',
         staticTag: 'index'
     }, gitData));
-})
+});
 
+/**
+ * react page test
+ */
+
+router.get('/react-page',async(ctx, next) => {
+    let Page = require('./jsx/hello.jsx');
+    serverRender(ctx, {
+        title: 'react test',
+        staticTag: 'react-test'
+    }, {
+        Page,
+        props: {name: 'koa'}
+    });
+});
 
 /**
  * 404
