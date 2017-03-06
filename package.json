@@ -19,6 +19,7 @@
         "rudy"
     ],
     "author": "enzo",
+    "contributors":["enzo","slashhuang"],
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/iwfe/koa-rudy/issues"
