@@ -13,14 +13,7 @@ const actions = [{
     title: 'get tag',
     url: '/',
     action: async function(ctx, next) {
-
-        let data = await getTag();
-
-        if (data == null) {
-            return errorToJosn(ctx, '没有tag');
-        } else {
-            return successToJson(ctx, data);
-        }
+        return await getTag();
     }
 }]
 

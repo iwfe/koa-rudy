@@ -10,9 +10,7 @@ import request from "../request";
 class Subject extends request {
     constructor() {
         super();
-
         this.host = global._appConfig.movieSoa;
-
         this.actions = {
             'subject': 'subject.json',
             'tag': 'tag.json'
@@ -22,26 +20,14 @@ class Subject extends request {
 
 const subject = new Subject();
 
-export async function getSubject(id) {
-    let data = await subject.fetch({
+export function getSubject(id) {
+    return subject.customize_fetch({
         url: "subject"
-    }).then(function(data) {
-        return data;
-    }, function(error) {
-        global.log_error('getSubject error ' + error);
     })
-
-    return data;
 }
 
-export async function getTag(id) {
-    let data = await subject.fetch({
+export function getTag(id) {
+    return subject.customize_fetch({
         url: "tag"
-    }).then(function(data) {
-        return data;
-    }, function(error) {
-        global.log_error('getTag error');
     })
-
-    return data;
 }

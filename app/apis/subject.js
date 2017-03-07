@@ -15,13 +15,7 @@ const actions = [{
         version: 'v1',
         action: async function(ctx, next) {
             let { id } = ctx.params;
-            let data = await getSubject(id);
-
-            if (data == null) {
-                return errorToJson(ctx, '未找到该主题', 404);
-            } else {
-                return successToJson(ctx, data)
-            }
+            return getSubject(id);
         }
     },
 
@@ -30,7 +24,7 @@ const actions = [{
         version: 'v2',
         url: '/:id',
         action: async function(ctx, next) {
-            successToJson(ctx, { version: 'v2' });
+            return { version: 'v2' }
         }
     }
 ]

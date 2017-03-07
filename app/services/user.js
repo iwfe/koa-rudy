@@ -21,13 +21,9 @@ class User extends request {
 
 const user = new User();
 
-export async function getUserInfo(id) {
-    let data = await user.fetch({
+export  function getUserInfo(id) {
+    return  user.customize_fetch({
         url: "info"
-    }).then(function(data) {
-        return data;
-    }, function(error) {
-        console.log('出错了', error);
     })
 
     return data;

@@ -3,7 +3,7 @@
  * @Date:   2016-11-08 11:40:08
  * @Last Modified by:   enzo
  * @Last Modified time: 2016-12-28 19:56:09
- * 
+ *
  * 提示：整个项目的展开都围绕着中间件
  */
 
@@ -27,12 +27,19 @@ global.log_info = info;
 global.log_error = error;
 
 app.use(logger({
-    path: path.join(__dirname, '../logs/server.log')
+    logPath: path.join(__dirname, '../logs/'),
+    logName:"server.log"
+}));
+
+app.use(middleware.serviceCtx);
+
+app.use(middleware.cookie({
+   cookieNameList:['iwjw-session-id']
 }));
 
 /**
  * 静态文件
- * 
+ *
  * 参数为root路径
  */
 app.use(middleware.assstatic(path.join(__dirname, '../assets/')));
@@ -63,7 +70,7 @@ app.use(urlrewrite.routes());
 app.use(middleware.api({
     root: 'api',
     website: global._appConfig.website,
-    path: path.join(__dirname, '../app/apis')
+    folder: path.join(__dirname, '../app/apis')
 }));
 
 

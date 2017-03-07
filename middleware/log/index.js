@@ -2,66 +2,87 @@
  * @Author: enzo
  * @Date:   2016-11-30 11:08:34
  * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-12-27 10:38:38
+ * @Last Modified time: 2017-01-19 15:43:02
+ * @modified content : 以stream形式修改日志处理方式
  */
 
 const winston = require('winston');
-const path = require('path');
+const Path = require('path');
+const env = process.env['NODE_ENV'];
+
 const fs = require('fs');
+const fse = require('fs-extra');
 const dateUtils = require("date-utils").language("es");
 
-const heartbeat = 1000 * 60;
+//一小时更新下日志
+const heartbeat = 120*60*1000;
+// const heartbeat = 10*1000;
 const timeReg = 'YYYY-MM-DD';
-var logTime = Date.now();
 
-const error = function(msg = '这一个默认的错误msg', status = 500) {
-    let err = new Error(msg);
-    err.status = status;
+/*
+ * 日志处理系统，在有日志的情况下只保留24个文件
+ */
+import  { LogQueue }  from './util';
 
-    throw err;
-}
+const StreamPiper = require("fs-pipe");
 
-const info = function(msg) {
-    console.log(msg);
-    winston.info(msg)
-}
+/**
+ * 错误处理
+ */
+const error = msg=> winston.error(msg);
+const info = msg => winston.info(msg);
 
-const logger = function(setting) {
-
-    let { path } = setting;
-
-    if (!path) {
-        throw new Error(`log path is empty`);
-    }
-
+const logger =   function(setting) {
+    let { logPath,logName, statusConf } = setting;
+    fse.emptyDirSync(logPath);
+    //日志常数
+    const LogStreamPath = Path.resolve(logPath,logName)
     winston.add(winston.transports.File, {
-        filename: path
+        filename: LogStreamPath
     });
-
-    // 一分钟轮询一次
-    // 每天生成历史日志文件
-    setInterval(() => {
-        let today = new Date().toFormat(timeReg);
-        let last = new Date(logTime).toFormat(timeReg);
-
-        if (new Date(today).getTime() > new Date(last).getTime()) {
-            let rename = path.replace('.log', `.${last}.log`);
-            fs.rename(path, rename, () => {
-                fs.writeFile(path, 'UTF-8');
-                logTime = Date.now();
-            });
+    //存储2天日志
+    let  LogQueueInstance = new LogQueue({
+        logPrefix:logPath,
+        length:24,
+        logJson:{
+            'logInterval':`日志记录间隔为${heartbeat/(1000*60*60)}小时`,
+            'server.log':`/logs/${logName}`
         }
-
-    }, heartbeat)
-
-
+    })
+    // 轮询存储文件
+    setInterval(() => {
+        let now = new Date();
+        let today = now.toFormat(timeReg);
+        let newLogId = `server.${today}-${now.getHours()}.log`;
+        let newLogPath = Path.resolve(logPath,newLogId);
+        new StreamPiper()
+                .src(LogStreamPath)
+                .pipe(newLogPath)
+                .empty(LogStreamPath)
+                .final(()=>LogQueueInstance.push(newLogId))
+    },heartbeat)
     return function(ctx, next) {
-        return next()
-            .then()
-            .catch(err => {
-                winston.error(err.name + '\n' + err.message + '\n' + err.stack);
-            })
+        return next().then(()=>{
+                    winston.info(`${ctx.method} ${ctx.origin}${ctx.path} --${ctx.status}\n` );
+                    if(ctx.status==404){
+                        if(ctx.path.match(/^[^\.]*$/)){
+                            winston.error(`302重定向-- path : ${ctx.path} redirecting to path: /`);
+                            ctx.redirect('/')
+                        }else{
+                            ctx.body=`404 NOT FOUND for api or resource -- ${ctx.path}`;
+                            ctx.status=404
+                        }
+                    }
+                })
+                .catch(err => {
+                    let errorMessage = `${err.name}-- ${err.message}  ${err.stack}\n`
+                    winston.error(errorMessage);
+                    //内部错误
+                    if(err instanceof Error){
+                        ctx.body = errorMessage;
+                        ctx.status=500
+                    }
+                })
     }
-}
-
+};
 export { logger, info, error }

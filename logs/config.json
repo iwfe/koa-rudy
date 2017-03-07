@@ -1,0 +1,4 @@
+{
+  "logInterval": "日志记录间隔为2小时",
+  "server.log": "/logs/server.log"
+}

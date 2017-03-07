@@ -1,8 +1,9 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 15:02:53
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-23 16:44:36
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2017-01-23 15:36:58
+ * @modified 增加action统一处理行为
  */
 
 const debug = require('debug')('rudy:router');
@@ -16,78 +17,77 @@ const routerReg = /\/?(\w*).js/;
 const methodReg = /([get|post|del|put]*):?(:?.*)/;
 const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
-module.exports = function(setting) {
-    let { root, path, website } = setting;
 
-    if (!path) {
-        throw new Error('router setting path');
-    }
-
-    if (!root) root = '/';
-
-    if (!website) website = '//';
-
-    let appRoot = root != '/' ? '/' + root + '/' : '';
-
-    // all resources
-    let resourcesList = {};
-    router.get(appRoot, (ctx, next) => {
-        if (process.env.NODE_ENV != 'prod') {
-            ctx.body = JSON.stringify(resourcesList);
-        } else {
-            ctx.body = '用鼠标在页面上点一点有惊喜哦';
+/*API 集合*/
+let actionCollection={
+    subAPIList:{},
+    resourcesList:{},
+    push(name,value){
+        this.init(name).push(...value);
+    },
+    init(name){
+        if(!Array.isArray(this.subAPIList[name])){
+            this.subAPIList[name]=[];
         }
-    })
+        return  this.subAPIList[name];
+    }
+};
 
+module.exports = function(setting) {
+    let { root, folder, website } = setting;
+    if (!folder) {
+        throw new Error('router setting folder');
+    }
+    root = root || '/';
+    website = website || '//';
+    let appRoot = path.resolve(`/${root}/`);
+
+    //包裹action的处理
+    let { wrapperActionHandler } = require(path.resolve(folder,'./wrapperApi'));
+
+    router.get(appRoot, (ctx, next) => {
+        ctx.body = JSON.stringify(actionCollection.resourcesList);
+    });
     // resources parse
-    util.pathls(path).forEach(function(filePath) {
+    util.pathls(folder).forEach(function (filePath) {
 
-        if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1) {
+        //大写开头的文件标示为api文件
+        if (!jsfileReg.test(filePath) || !(/^[A-W]/.test(path.basename(filePath)))) {
             return;
         }
 
-        // require module
-        let apis = require(filePath);
-        let { actions, resourceName, describe } = apis;
-        let actionList = [];
-
-        //  must be resourceName
-        if (!resourceName) {
-            throw new Error(`${filePath} the lack of resourceName`);
-        }
-
-        // reg router
-        router.get(`${appRoot}${resourceName}`, (ctx, next) => {
-            ctx.body = JSON.stringify(actionList);
-        })
-
-        // add resource
-        resourcesList[`${resourceName}`] = {
+        // 加载子路由
+        let apiList = require(filePath);
+        let { actions, resourceName, describe } = apiList;
+        actionCollection.push(resourceName, actions);
+        actionCollection.resourcesList[`${resourceName}`] = {
             describe: describe || '未添加描述',
-            href: `${website}${appRoot}${resourceName}`
+            href: `${website}${path.resolve(`${appRoot}/${resourceName}`)}`
         };
-
-        // parse action
-        actions && actions.length && actions.map((item, index) => {
-            let { method, url, version, action } = item;
-            let routerPath = resourceName;
-
-            !method ? method = 'get' : '';
-            version ? routerPath = `${appRoot}${version}/${routerPath}` :
-                routerPath = `${appRoot}${routerPath}`;
-
-            routerPath = `${routerPath}${url}`;
-
-            delete item.url;
-
+        //实际的api路由层面
+        actions && actions.map((item) => {
+            let { method, url, action } = item;
+            method = method || 'get';
+            let routerPath = path.normalize([appRoot, resourceName, url].join('/'));
             item.href = `${website}${routerPath}`;
-
-            actionList.push(item);
-
-            router[method](routerPath, action);
+            /*兼容get和post,但是实际上只能由一个work,这样做仅仅是为了api目录方便查阅而已*/
+            router['get'](routerPath, wrapperActionHandler(action));
+            router['post'](routerPath, wrapperActionHandler(action));
+        });
+        //运维需要的检测api
+        router.get('/isLive.action',function(ctx) {
+            ctx.body =true;
         })
-
     });
 
+    //api层面
+    for (let subAPI in actionCollection.subAPIList) {
+        let value = actionCollection.subAPIList[subAPI];
+        router.get(`${appRoot}/${subAPI}`, (ctx, next) => {
+            ctx.body = JSON.stringify(Object.assign(global._appConfig,value));
+        });
+    }
     return router.routes()
 };
+
+

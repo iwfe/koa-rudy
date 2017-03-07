@@ -15,18 +15,7 @@ const actions = [{
     version: 'v1',
     action: async function(ctx, next) {
         let { id } = ctx.request.query;
-
-        if (!id) {
-            return errorToJosn(ctx, '缺少必要字段');
-        }
-
-        let data = await getUserInfo(id);
-
-        if (data == null) {
-            return errorToJosn(ctx, '没有该用户信息');
-        } else {
-            return successToJson(ctx, data)
-        }
+        return  await getUserInfo(id);
     }
 }]
 

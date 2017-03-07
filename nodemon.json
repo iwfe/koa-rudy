@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    ".git",
+    "assets",
+    "logs",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "events": {
+    "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
+  },
+  "ext": "js json html"
+}
