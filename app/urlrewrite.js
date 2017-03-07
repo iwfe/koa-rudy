@@ -12,9 +12,11 @@ const router = require('koa-router')();
  * index
  */
 router.get('/', (ctx, next) => {
+
     successToView(ctx, 'welcome', {
         title: '首页',
-        staticTag: 'welcome'
+        staticTag: 'welcome',
+        hasUser:ctx.cookie_decoder.certificate
     });
 })
 

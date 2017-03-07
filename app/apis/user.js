@@ -9,13 +9,35 @@ import { getUserInfo } from '../services/user.js';
 
 const resourceName = 'user';
 const describe = '用户';
-const actions = [{
-    title: 'get detail v1',
-    url: '/:id',
-    version: 'v1',
+const actions = [
+//     {
+//     title: 'get detail v1',
+//     url: '/:id',
+//     version: 'v1',
+//     action: async function(ctx, next) {
+//         let { id } = ctx.request.query;
+//         return  await getUserInfo(id);
+//     }
+// },
+{
+    title: 'logout',
+    url: '/logout.action',
     action: async function(ctx, next) {
-        let { id } = ctx.request.query;
-        return  await getUserInfo(id);
+        ctx.set('Set-Cookie',["iwjw-session-id=0;Max-Age=0;Path=/"]);
+        ctx.redirect('/')
+
+    }
+},
+{
+    title: 'login',
+    url: '/login.action',
+    action: async function(ctx, next) {
+         ctx.cookie_decoder.batchCipher({
+             "iwjw-session-id":'slash'
+         },(cookieArr)=>{
+              ctx.set('Set-Cookie', cookieArr);
+            })
+        ctx.redirect('/')
     }
 }]
 

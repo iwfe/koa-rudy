@@ -1,3 +1,18 @@
+
+<div>欢迎你
+    <h2>
+        <% if (locals.hasUser) { %>
+            管理员
+        <% } else { %>
+        游客
+        <% } %>
+</h2>
+
+</div>
+<a href="/api/user/logout.action">登出</a>
+
+<a href="/api/user/login.action">登录</a>
+
 <div class="index">
     <img class="rudylogo" src="./football.png" height="150" width="150">
     <h1>koa-rudy</h1>

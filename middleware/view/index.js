@@ -38,10 +38,7 @@ module.exports = function view(settings) {
     }
 
     copy(defaultSettings).to(settings);
-
-    //用于IO数据缓存
-    let fileCache = {};
-
+    
     async function render(subViewName, options) {
         let {
             root,
@@ -50,11 +47,8 @@ module.exports = function view(settings) {
         } = settings;
         let viewPath = path.join(root, subViewName + viewExt);
         // layout外层
-        let tpl = fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
-        // 生产环境缓存layout，减少io操作
-        if (process.env['NODE_ENV'] != 'dev') {
-            fileCache.tpl = tpl;
-        }
+        let tpl = fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
+       
         // 渲染的模板内容
         Utils.addTemplate(options, { templateName: viewPath });
         Utils.addConst(options);
