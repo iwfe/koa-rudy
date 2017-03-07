@@ -10,15 +10,15 @@ import { getUserInfo } from '../services/user.js';
 const resourceName = 'user';
 const describe = '用户';
 const actions = [
-//     {
-//     title: 'get detail v1',
-//     url: '/:id',
-//     version: 'v1',
-//     action: async function(ctx, next) {
-//         let { id } = ctx.request.query;
-//         return  await getUserInfo(id);
-//     }
-// },
+    {
+    title: 'get detail v1',
+    url: '/detail/:id',
+    version: 'v1',
+    action: async function(ctx, next) {
+        let { id } = ctx.request.query;
+        return  await getUserInfo(id);
+    }
+},
 {
     title: 'logout',
     url: '/logout.action',
