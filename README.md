@@ -4,7 +4,6 @@
 
 > node -v >=6.9.0
 > pm2
-> yarn
 
 ## 启动
 
@@ -40,41 +39,33 @@
 
 ## 目录介绍
 |- bin 程序入口
-|
 |- config 配置文件
-|
 |- app 路由和视图
 |- |- apis 客户端 api
 |- |- service 对接soa实现主业务
 |- |- views 视图
-|
 |- middleware 中间件
-|
 |- assets 静态资源 图片/font等
-|
 |- utils  工具库
-|
 |- test 测试
-|
 |- logs 日志
 
 ## middleware
-
 1. api
 2. body
 3. log
 4. static
 5. view
+6. cookie
+7. service
 
 ## 业务分层
-
 > API 收集处理客户端请求数据，将处理好的数据发给service.
 > SERVICE 主业务层，根据业务逻辑分块，去不同的soa请求数据进行封装反馈给API.
 > SOA 每个SOA单独模块封装，以HTTP协议请求数据，不做数据封装.
 
 ## Jenkins
     使用 Jenkins docker image
-
 ## docker
 [dockerFile](https://github.com/iwfe/koa-rudy/blob/master/Dockerfile)
 
@@ -90,6 +81,11 @@
 2. [路由模块koa-router 2](https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete)
 3. [Promise网络请求axios](https://github.com/mzabriskie/axios)
 4. [ejs模板渲染](https://github.com/mde/ejs)
-    1. [lodash文档](https://lodash.com/docs/4.17.2)
-    2. [shelljs命令行客户端](https://github.com/shelljs/shelljs)
+5. 工具相关
+    5.1 [lodash文档](https://lodash.com/docs/4.17.2)
+    5.2 [fs-extra](https://github.com/jprichardson/node-fs-extra)
+    5.3 [fs-pipe](https://github.com/slashhuang/fs-pipe)
+    5.4 [koa-router-interceptor](https://github.com/slashhuang/koa-router-interceptor)
+
+6.[静态资源拉取逻辑](./utils/resource-util)    
 

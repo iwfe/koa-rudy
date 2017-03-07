@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-10 10:20:28
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-11 16:31:09
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2017-3-7 16:31:09
  */
 import { successToJson, errorToJson } from '../response';
 import { getUserInfo } from '../services/user.js';
@@ -34,9 +34,7 @@ const actions = [
     action: async function(ctx, next) {
          ctx.cookie_decoder.batchCipher({
              "iwjw-session-id":'slash'
-         },(cookieArr)=>{
-              ctx.set('Set-Cookie', cookieArr);
-            })
+         },cookieArr=>ctx.set('Set-Cookie', cookieArr));
         ctx.redirect('/')
     }
 }]

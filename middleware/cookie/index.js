@@ -66,7 +66,6 @@ module.exports =(option)=>{
                     let cookieArr = cookieList.map((cookie,index)=>{
                         return ctx.cookie_decoder.cookieTemp(cookie,ctx.cookies.get(cookie))
                     })
-                                        console.log('cookie set')
 
                     ctx.set('Set-Cookie',cookieArr);
                 })
