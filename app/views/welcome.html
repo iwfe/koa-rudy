@@ -6,12 +6,15 @@
         <% } else { %>
         游客
         <% } %>
-</h2>
+     </h2>
 
 </div>
+ <% if (locals.hasUser) { %>
 <a href="/api/user/logout.action">登出</a>
-
+<% } else { %>
 <a href="/api/user/login.action">登录</a>
+<% } %>
+
 
 <div class="index">
     <img class="rudylogo" src="./football.png" height="150" width="150">
