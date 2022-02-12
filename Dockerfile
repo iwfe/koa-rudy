@@ -1,7 +1,7 @@
 FROM node:6.9.1
 
 RUN useradd --user-group --create-home --shell /bin/false app &&\
-  npm config set registry https://registry.npm.taobao.org &&\
+  npm config set registry https://registry.npmmirror.com &&\
   npm config list &&\
   npm install pm2 yarn -g
 
@@ -13,10 +13,10 @@ RUN chown -R app:app $HOME/*
 
 USER app
 WORKDIR $HOME/rudy
-RUN npm config set registry https://registry.npm.taobao.org &&\
+RUN npm config set registry https://registry.npmmirror.com &&\
   npm config list &&\
   npm install
-# RUN yarn config set registry https://registry.npm.taobao.org &&\
+# RUN yarn config set registry https://registry.npmmirror.com &&\
 #   yarn config list &&\
 #   yarn instal
 
